@@ -34,10 +34,6 @@ const token = req.cookies.get(payloadToken)?.value
 
     const userRes = await userReq.json()
 
-    console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!!')
-    console.log(userRes)
-    console.log('############################')
-
     if (!userReq.ok || !userRes?.user) {
         draftMode().disable()
         return new Response('You are not allowed to preview this page', { status: 403 })

@@ -181,6 +181,7 @@ export interface Page {
  * via the `definition` "media".
  */
 export interface Media {
+  caption: any;
   id: number;
   alt: string;
   updatedAt: string;

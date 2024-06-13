@@ -2,7 +2,6 @@ import { Block } from 'payload/types'
 
 export const WithBackgroundImage: Block = {
   slug: 'hero-with-background-image',
-  imageURL: 'https://your-image-url.com/thumbnail.jpg', // Add your custom thumbnail image URL here
   fields: [
     {
       name: 'enableAnnouncement',
