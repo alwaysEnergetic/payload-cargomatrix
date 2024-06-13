@@ -3,7 +3,7 @@
 import { useEffect } from 'react'
 import { Login } from '@/payload-types'
 import Link from 'next/link'
-import PayloadImage from '../global/Image'
+import PayloadImage from '../Global/Image'
 import { useAuth } from '@/app/_providers/AuthProvider'
 import { FormStatus, useForm } from '@/app/_hooks/useForm'
 import { useRouter } from 'next/navigation'

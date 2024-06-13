@@ -1,5 +1,9 @@
 import { ThemeProvider } from 'next-themes'
 import AuthProvider from '../../_providers/AuthProvider'
+
+import Footer from '@/app/_components/Footer'
+import Header from '@/app/_components/Header'
+
 import './globals.css'
 
 type Props = {
@@ -15,7 +19,9 @@ export default async function RootLayout({ params: { locale }, children }: Props
       <body>
         <AuthProvider>
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-            {children}
+          <Header />
+            <main className="pt-20">{children}</main>
+          <Footer />
           </ThemeProvider>
         </AuthProvider>
       </body>

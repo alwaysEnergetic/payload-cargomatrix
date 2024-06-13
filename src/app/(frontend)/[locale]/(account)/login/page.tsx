@@ -1,6 +1,6 @@
 import { getPayload } from 'payload'
 import promiseConfig from '@payload-config'
-import LoginForm from '@/app/_components/login/LoginForm'
+import LoginForm from '@/app/_components/Login/LoginForm'
 
 const GET = async (locale: string) => {
   const payload = await getPayload({

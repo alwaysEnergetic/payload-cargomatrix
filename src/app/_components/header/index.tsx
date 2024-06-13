@@ -2,7 +2,7 @@ import { getPayload } from 'payload'
 import configPromise from '@payload-config'
 import Link from 'next/link'
 import CTAs from './CTAs'
-import PayloadImage from '../global/Image'
+import PayloadImage from '../Global/Image'
 import { code } from 'payload/fields/validations'
 
 const GET = async () => {

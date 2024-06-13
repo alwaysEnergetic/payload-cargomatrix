@@ -1,6 +1,6 @@
 import { getPayload } from 'payload'
 import promiseConfig from '@payload-config'
-import ForgotPasswordForm from '@/app/_components/forgotPassword/ForgotPasswordForm'
+import ForgotPasswordForm from '@/app/_components/ForgotPassword/ForgotPasswordForm'
 
 const GET = async (locale: string) => {
   const payload = await getPayload({

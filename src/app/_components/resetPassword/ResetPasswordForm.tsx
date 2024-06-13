@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect } from 'react'
 import { ResetPassword } from '@/payload-types'
-import PayloadImage from '../global/Image'
+import PayloadImage from '../Global/Image'
 import { FormStatus, useForm } from '@/app/_hooks/useForm'
 import { useRouter } from 'next/navigation'
 

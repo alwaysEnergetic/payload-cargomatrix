@@ -24,8 +24,10 @@ export const Pages: CollectionConfig = {
   admin: {
     useAsTitle: 'title',
     defaultColumns: ['title', 'slug', 'updatedAt'],
-    livePreview: {
-      url: ({ data }) => `${process.env.PAYLOAD_PUBLIC_NEXT_URL}/preview/${data.slug}`,
+    preview: doc => {
+      return `${process.env.NEXT_PUBLIC_CMS_URL}/api/preview?url=${encodeURIComponent(
+        `${process.env.NEXT_PUBLIC_CMS_URL}/${doc.slug !== 'home' ? doc.slug : ''}`,
+      )}&secret=${process.env.PAYLOAD_SECRET}`
     },
   },
   fields: [

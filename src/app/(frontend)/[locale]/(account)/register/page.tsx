@@ -1,6 +1,6 @@
 import { getPayload } from 'payload'
 import promiseConfig from '@payload-config'
-import RegisterForm from '@/app/_components/register/RegisterForm'
+import RegisterForm from '@/app/_components/Register/RegisterForm'
 
 const GET = async (locale: string) => {
   const payload = await getPayload({

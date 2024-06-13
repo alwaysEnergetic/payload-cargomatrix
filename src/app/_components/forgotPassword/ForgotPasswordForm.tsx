@@ -2,7 +2,7 @@
 
 import { useCallback } from 'react'
 import { ForgotPassword } from '@/payload-types'
-import PayloadImage from '@/app/_components/global/Image'
+import PayloadImage from '@/app/_components/Global/Image'
 import { FormStatus, useForm } from '@/app/_hooks/useForm'
 
 type ForgotPasswordFunction = (args: { email: string }) => Promise<true | string>
