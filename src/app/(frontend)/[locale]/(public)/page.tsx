@@ -30,7 +30,7 @@ export default async function Page({ params: { locale } }: { params: { locale: s
   const backgroundUrl =
     typeof homepageData.background === 'string'
       ? homepageData.background
-      : homepageData.background.url
+      : homepageData.background?.url
 
   return (
     <div

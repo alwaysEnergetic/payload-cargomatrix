@@ -19,6 +19,7 @@ export interface Config {
   globals: {
     settings: Setting;
     homepage: Homepage;
+    header: Header;
     login: Login;
     register: Register;
     resetPassword: ResetPassword;
@@ -34,10 +35,10 @@ export interface Config {
  * via the `definition` "users".
  */
 export interface User {
-  id: string;
+  id: number;
   firstName: string;
   lastName: string;
-  locations?: (string | Location)[] | null;
+  locations?: (number | Location)[] | null;
   roles?: ('admin' | 'staff')[] | null;
   updatedAt: string;
   createdAt: string;
@@ -55,10 +56,10 @@ export interface User {
  * via the `definition` "locations".
  */
 export interface Location {
-  id: string;
+  id: number;
   name: string;
-  type?: (string | null) | LocationType;
-  page: string | Page;
+  type?: (number | null) | LocationType;
+  page: number | Page;
   updatedAt: string;
   createdAt: string;
 }
@@ -67,7 +68,7 @@ export interface Location {
  * via the `definition` "locationTypes".
  */
 export interface LocationType {
-  id: string;
+  id: number;
   name: string;
   updatedAt: string;
   createdAt: string;
@@ -77,9 +78,52 @@ export interface LocationType {
  * via the `definition` "pages".
  */
 export interface Page {
-  id: string;
+  id: number;
   title: string;
-  subtitle?: string | null;
+  publishedOn?: string | null;
+  hero: {
+    type: 'none' | 'highImpact' | 'mediumImpact' | 'lowImpact';
+    richtext?: {
+      root: {
+        type: string;
+        children: {
+          type: string;
+          version: number;
+          [k: string]: unknown;
+        }[];
+        direction: ('ltr' | 'rtl') | null;
+        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+        indent: number;
+        version: number;
+      };
+      [k: string]: unknown;
+    } | null;
+    links?:
+      | {
+          link: {
+            type?: ('reference' | 'custom') | null;
+            newTab?: boolean | null;
+            reference?: {
+              relationTo: 'pages';
+              value: number | Page;
+            } | null;
+            url?: string | null;
+            label: string;
+            appearance?: ('default' | 'primary' | 'secondary') | null;
+          };
+          id?: string | null;
+        }[]
+      | null;
+    media?: number | Media | null;
+  };
+  layout: {
+    invertBackground?: boolean | null;
+    position?: ('default' | 'fullscreen') | null;
+    media: number | Media;
+    id?: string | null;
+    blockName?: string | null;
+    blockType: 'mediaBlock';
+  }[];
   blocks?:
     | (
         | {
@@ -115,7 +159,7 @@ export interface Page {
             secondaryCtaUrl?: string | null;
             featuredInLogos?:
               | {
-                  logo: string | Media;
+                  logo: number | Media;
                   url: string;
                   id?: string | null;
                 }[]
@@ -137,7 +181,7 @@ export interface Page {
  * via the `definition` "media".
  */
 export interface Media {
-  id: string;
+  id: number;
   alt: string;
   updatedAt: string;
   createdAt: string;
@@ -156,10 +200,10 @@ export interface Media {
  * via the `definition` "payload-preferences".
  */
 export interface PayloadPreference {
-  id: string;
+  id: number;
   user: {
     relationTo: 'users';
-    value: string | User;
+    value: number | User;
   };
   key?: string | null;
   value?:
@@ -179,7 +223,7 @@ export interface PayloadPreference {
  * via the `definition` "payload-migrations".
  */
 export interface PayloadMigration {
-  id: string;
+  id: number;
   name?: string | null;
   batch?: number | null;
   updatedAt: string;
@@ -190,8 +234,8 @@ export interface PayloadMigration {
  * via the `definition` "settings".
  */
 export interface Setting {
-  id: string;
-  logo: string | Media;
+  id: number;
+  logo: number | Media;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -200,8 +244,47 @@ export interface Setting {
  * via the `definition` "homepage".
  */
 export interface Homepage {
-  id: string;
-  background: string | Media;
+  id: number;
+  background: number | Media;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "header".
+ */
+export interface Header {
+  id: number;
+  navItems?:
+    | {
+        link: {
+          type?: ('reference' | 'custom') | null;
+          newTab?: boolean | null;
+          reference?: {
+            relationTo: 'pages';
+            value: number | Page;
+          } | null;
+          url?: string | null;
+          label: string;
+        };
+        subNavItems?:
+          | {
+              link: {
+                type?: ('reference' | 'custom') | null;
+                newTab?: boolean | null;
+                reference?: {
+                  relationTo: 'pages';
+                  value: number | Page;
+                } | null;
+                url?: string | null;
+                label: string;
+              };
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+      }[]
+    | null;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -210,11 +293,11 @@ export interface Homepage {
  * via the `definition` "login".
  */
 export interface Login {
-  id: string;
-  background: string | Media;
+  id: number;
+  background: number | Media;
   title?: string | null;
   description?: string | null;
-  logo?: string | Media | null;
+  logo?: number | Media | null;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -223,11 +306,11 @@ export interface Login {
  * via the `definition` "register".
  */
 export interface Register {
-  id: string;
-  background: string | Media;
+  id: number;
+  background: number | Media;
   title?: string | null;
   description?: string | null;
-  logo?: string | Media | null;
+  logo?: number | Media | null;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -236,11 +319,11 @@ export interface Register {
  * via the `definition` "resetPassword".
  */
 export interface ResetPassword {
-  id: string;
-  background: string | Media;
+  id: number;
+  background: number | Media;
   title?: string | null;
   description?: string | null;
-  logo?: string | Media | null;
+  logo?: number | Media | null;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -249,11 +332,11 @@ export interface ResetPassword {
  * via the `definition` "forgotPassword".
  */
 export interface ForgotPassword {
-  id: string;
-  background: string | Media;
+  id: number;
+  background: number | Media;
   title?: string | null;
   description?: string | null;
-  logo?: string | Media | null;
+  logo?: number | Media | null;
   updatedAt?: string | null;
   createdAt?: string | null;
 }

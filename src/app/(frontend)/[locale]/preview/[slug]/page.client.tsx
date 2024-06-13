@@ -16,8 +16,6 @@ export const PageTemplate: React.FC<{ page: PageType | null | undefined }> = ({ 
   return (
     <main className="pt-10 pb-16">
       <h1 className="text-center text-3xl font-bold mb-10">{data.title}</h1>
-      {data.subtitle && <h3 className="whitespace-pre-wrap">{data.subtitle}</h3>}
-      {data.body && <Richtext content={data.body} />}
     </main>
   )
 }

@@ -8,8 +8,8 @@ type Props = {
 }
 
 export default function PayloadImage({ image, width, height }: Props) {
-  const src = typeof image === 'string' ? image : image.url ?? ''
-  const alt = typeof image === 'string' ? image : image.alt
+  const src = typeof image === 'string' ? image : image?.url ?? ''
+  const alt = typeof image === 'string' ? image : image?.alt
 
   return <Image src={src} alt={alt} width={width} height={height} />
 }

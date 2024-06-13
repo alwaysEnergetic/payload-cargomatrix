@@ -1,12 +1,19 @@
 import { CollectionConfig } from 'payload/types'
-import formatSlug from './hooks/formatSlug'
+import { slugField } from '../../fields/slug'
+
+//access
 import { loggedIn } from './access/loggedIn'
-import WithBackgroundImage from './blocks/WithBackgroundImage'
+import { adminsOrPublished } from './access/adminsOrPublished'
+import { WithBackgroundImage } from '../../blocks/WithBackgroundImage'
+
+//Hero & Blocks
+import { MediaBlock } from '../../blocks/MediaBlock'
+import { hero } from '../../fields/hero'
 
 export const Pages: CollectionConfig = {
   slug: 'pages',
   access: {
-    read: () => true,
+    read: adminsOrPublished,
     create: loggedIn,
     update: loggedIn,
     delete: loggedIn,
@@ -16,6 +23,7 @@ export const Pages: CollectionConfig = {
   },
   admin: {
     useAsTitle: 'title',
+    defaultColumns: ['title', 'slug', 'updatedAt'],
     livePreview: {
       url: ({ data }) => `${process.env.PAYLOAD_PUBLIC_NEXT_URL}/preview/${data.slug}`,
     },
@@ -28,9 +36,44 @@ export const Pages: CollectionConfig = {
       localized: true,
     },
     {
-      name: 'subtitle',
-      type: 'textarea',
-      localized: true,
+      name: 'publishedOn',
+      type: 'date',
+      admin: {
+        position: 'sidebar',
+        date: {
+          pickerAppearance: 'dayAndTime',
+        },
+      },
+      hooks: {
+        beforeChange: [
+          ({ siblingData, value }) => {
+            if (siblingData._status === 'published' && !value) {
+              return new Date()
+            }
+            return value
+          },
+        ],
+      },
+    },
+    {
+      type: 'tabs',
+      tabs: [
+        {
+          label: 'Hero',
+          fields: [hero],
+        },
+        {
+          label: 'Block',
+          fields: [
+            {
+              name: 'layout',
+              type: 'blocks',
+              required: true,
+              blocks: [MediaBlock],
+            },
+          ],
+        },
+      ],
     },
     {
       type: 'blocks',
@@ -51,17 +94,6 @@ export const Pages: CollectionConfig = {
         WithBackgroundImage,
       ],
     },
-    {
-      name: 'slug',
-      type: 'text',
-      index: true,
-      label: 'Slug',
-      admin: {
-        position: 'sidebar',
-      },
-      hooks: {
-        beforeValidate: [formatSlug('title')],
-      },
-    },
+    slugField(),
   ],
 }

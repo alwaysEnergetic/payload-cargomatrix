@@ -1,6 +1,6 @@
 import { Block } from 'payload/types'
 
-const WithBackgroundImage: Block = {
+export const WithBackgroundImage: Block = {
   slug: 'hero-with-background-image',
   imageURL: 'https://your-image-url.com/thumbnail.jpg', // Add your custom thumbnail image URL here
   fields: [
@@ -84,4 +84,3 @@ const WithBackgroundImage: Block = {
   ],
 }
 
-export default WithBackgroundImage
