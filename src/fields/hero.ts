@@ -3,6 +3,8 @@ import type { Field } from 'payload/types'
 import linkGroup from './linkGroup'
 //blocks
 import { MediaBlock } from './../blocks/MediaBlock'
+import { HeroBlock } from './../blocks/HeroBlock'
+import { FeaturesBlock } from './../blocks/FeaturesBlock'
 
 import {
     HTMLConverterFeature,
@@ -106,6 +108,16 @@ export const hero: Field = {
       admin: {
         condition: (_, { type } = {}) => ['highImpact', 'mediumImpact'].includes(type),
       },
+    },
+    {
+      type: 'blocks',
+      name: 'blocks',
+      localized: true,
+      minRows: 1,
+      blocks: [
+        HeroBlock,
+        FeaturesBlock
+      ],
     },
   ],
 }

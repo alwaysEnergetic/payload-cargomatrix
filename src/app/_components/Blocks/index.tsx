@@ -3,11 +3,14 @@ import React, { Fragment } from 'react'
 import { Page } from './../../../payload-types.js'
 
 import { MediaBlock } from '../../_blocks/MediaBlock'
+import { TeamLargeImagesDark } from '../../_blocks/TeamLargeImagesDark'
+
 import { toKebabCase } from '../../_utilities/toKebabCase'
 
 
 const blockComponents = {
   mediaBlock: MediaBlock,
+  teamLargeImagesDark: TeamLargeImagesDark
 }
 
 export const Blocks: React.FC<{
@@ -17,7 +20,6 @@ export const Blocks: React.FC<{
   const { disableTopPadding, blocks } = props
 
   const hasBlocks = blocks && Array.isArray(blocks) && blocks.length > 0
-
   if (hasBlocks) {
     return (
       <Fragment>

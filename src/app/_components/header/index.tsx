@@ -22,7 +22,6 @@ const GET = async () => {
 }
 export default async function Header() {
   const { settings, locales } = await GET()
-
   return (
     <header className="fixed top-0 left-0 right-0">
       <div className="bg-post-yellow">

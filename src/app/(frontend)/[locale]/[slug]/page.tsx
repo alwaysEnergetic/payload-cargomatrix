@@ -39,14 +39,14 @@ export default async function Page({ params: { slug = 'home', locale } }: PagePa
     return notFound()
   }
 
-  const { hero, layout } = page
+  const { layout } = page
 
   return (
     <React.Fragment>
       {/* <Hero {...hero} /> */}
       <Blocks
         blocks={layout}
-        disableTopPadding={!hero || hero?.type === 'none' || hero?.type === 'lowImpact'}
+        disableTopPadding={true}
       />
     </React.Fragment>
   )

@@ -81,96 +81,84 @@ export interface Page {
   id: number;
   title: string;
   publishedOn?: string | null;
-  hero: {
-    type: 'none' | 'highImpact' | 'mediumImpact' | 'lowImpact';
-    richtext?: {
-      root: {
-        type: string;
-        children: {
-          type: string;
-          version: number;
-          [k: string]: unknown;
-        }[];
-        direction: ('ltr' | 'rtl') | null;
-        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-        indent: number;
-        version: number;
-      };
-      [k: string]: unknown;
-    } | null;
-    links?:
-      | {
-          link: {
-            type?: ('reference' | 'custom') | null;
-            newTab?: boolean | null;
-            reference?: {
-              relationTo: 'pages';
-              value: number | Page;
-            } | null;
-            url?: string | null;
-            label: string;
-            appearance?: ('default' | 'primary' | 'secondary') | null;
-          };
-          id?: string | null;
-        }[]
-      | null;
-    media?: number | Media | null;
-  };
-  layout: {
-    invertBackground?: boolean | null;
-    position?: ('default' | 'fullscreen') | null;
-    media: number | Media;
-    id?: string | null;
-    blockName?: string | null;
-    blockType: 'mediaBlock';
-  }[];
-  blocks?:
-    | (
-        | {
-            body: {
-              root: {
-                type: string;
-                children: {
-                  type: string;
-                  version: number;
-                  [k: string]: unknown;
-                }[];
-                direction: ('ltr' | 'rtl') | null;
-                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-                indent: number;
-                version: number;
-              };
-              [k: string]: unknown;
-            };
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'richtext';
-          }
-        | {
-            enableAnnouncement?: boolean | null;
-            announcementBadgeText?: string | null;
-            announcementMainText?: string | null;
-            announcementURL?: string | null;
-            heading: string;
-            subheading?: string | null;
-            primaryCtaText: string;
-            primaryCtaUrl: string;
-            secondaryCtaText?: string | null;
-            secondaryCtaUrl?: string | null;
-            featuredInLogos?:
-              | {
-                  logo: number | Media;
-                  url: string;
-                  id?: string | null;
-                }[]
-              | null;
-            backgroundColor: string;
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'hero-with-background-image';
-          }
-      )[]
-    | null;
+  layout: (
+    | {
+        layoutType:
+          | 'simple-centered'
+          | 'split-screenshot'
+          | 'split-code-example'
+          | 'simple-centered-bg'
+          | 'app-screenshot'
+          | 'app-screenshot-dark'
+          | 'phone-mockup'
+          | 'split-image'
+          | 'angled-image-right'
+          | 'image-tiles'
+          | 'offset-image'
+          | 'split-screenshot-dark';
+        title: string;
+        subtitle?: string | null;
+        description?: string | null;
+        backgroundImage?: number | Media | null;
+        imageUrl?: number | Media | null;
+        ctaButtons?:
+          | {
+              label: string;
+              url: string;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'hero';
+      }
+    | {
+        layoutType:
+          | 'product-screenshot'
+          | 'centered-2x2'
+          | 'large-screenshot-dark'
+          | 'large-screenshot'
+          | 'three-column-small-icons-dark'
+          | 'three-column-small-icons'
+          | 'product-screenshot-left'
+          | 'product-screenshot-dark'
+          | 'three-column-large-icons-dark'
+          | 'three-column-large-icons'
+          | 'contained-panel'
+          | 'product-screenshot-panel'
+          | 'testimonial'
+          | 'offset-2x2'
+          | 'code-example-panel'
+          | 'offset-feature-list'
+          | 'simple'
+          | 'two-column-small-icons-dark';
+        title: string;
+        subtitle?: string | null;
+        description?: string | null;
+        productScreenshot?: number | Media | null;
+        largeScreenshot?: number | Media | null;
+        codeExampleImage?: number | Media | null;
+        icons?:
+          | {
+              icon: number | Media;
+              title: string;
+              description?: string | null;
+              id?: string | null;
+            }[]
+          | null;
+        testimonial?: string | null;
+        featureList?:
+          | {
+              title: string;
+              description?: string | null;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'featureSection';
+      }
+  )[];
   slug?: string | null;
   updatedAt: string;
   createdAt: string;
@@ -181,7 +169,6 @@ export interface Page {
  * via the `definition` "media".
  */
 export interface Media {
-  caption: any;
   id: number;
   alt: string;
   updatedAt: string;

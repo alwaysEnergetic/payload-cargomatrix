@@ -52,7 +52,7 @@ export default function UserMenu({ locales }: { locales: Locale[] }) {
           <p>{user.email}</p>
         </div>
         <hr />
-        {user.locations && user.locations.length && (
+        {user.locations && user.locations.length > 0 && (
           <Popover>
             <PopoverButton className="group flex w-full items-center justify-between rounded-lg py-2 px-3">
               <div className="flex items-center gap-2">
