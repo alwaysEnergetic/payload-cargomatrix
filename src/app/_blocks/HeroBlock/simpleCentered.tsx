@@ -1,6 +1,8 @@
 import React from 'react'
 import { Media, Page } from '../../../payload-types'
 import PayloadImage from '../../_components/Global/Image'
+import { CMSLink } from '../../_components/Link'
+
 
 type Link = {
   type: string
@@ -11,7 +13,7 @@ type Link = {
 };
 
 
-type SimpleCenteredProps = Extract<Page['layout'][0], { layoutType: 'simple-centered' }> & {
+type SimpleCenteredProps = {
   title: string
   description: string
   announcementText: string
@@ -52,15 +54,18 @@ export const SimpleCentered: React.FC<SimpleCenteredProps> = ({ title, descripti
           <h1 className="text-4xl font-bold tracking-tight sm:text-6xl">{title}</h1>
           <p className="mt-6 text-lg leading-8">{description}</p>
           <div className="mt-10 flex items-center justify-center gap-x-6">
-            <a
-              href="#"
-              className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+          <a
+            href="#"
+            className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
             >
               Get started
             </a>
             <a href="#" className="text-sm font-semibold leading-6">
               Learn more <span aria-hidden="true">→</span>
             </a>
+          {/* {links.map((link: Link, i: number) => (
+            <CMSLink key={i} {...link} />
+          ))} */}
           </div>
         </div>
       </div>
