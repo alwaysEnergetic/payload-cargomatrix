@@ -30,16 +30,33 @@ export const HeroBlock: Block = {
       label: 'Title',
     },
     {
-      name: 'subtitle',
-      type: 'text',
-      required: false,
-      label: 'Subtitle',
-    },
-    {
       name: 'description',
       type: 'textarea',
       required: false,
       label: 'Description',
+    },
+    {
+      name: 'announcement',
+      type: 'checkbox',
+      label: 'Show Announcement',
+    },
+    {
+      name: 'announcementText',
+      type: 'text',
+      required: false,
+      label: 'Announcement Text',
+      admin: {
+        condition: (data, siblingData) => siblingData?.announcement,
+      },
+    },
+    {
+      name: 'announcementUrl',
+      type: 'text',
+      required: false,
+      label: 'Announcement URL',
+      admin: {
+        condition: (data, siblingData) => siblingData?.announcement,
+      },
     },
     {
       name: 'backgroundImage',

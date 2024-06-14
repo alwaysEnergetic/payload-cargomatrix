@@ -20,7 +20,7 @@ export default async function RootLayout({ params: { locale }, children }: Props
         <AuthProvider>
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <Header />
-            <main className="pt-20">{children}</main>
+          <main className="pt-20">{children}</main>
           <Footer />
           </ThemeProvider>
         </AuthProvider>

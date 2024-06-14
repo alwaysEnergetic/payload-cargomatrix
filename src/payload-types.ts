@@ -97,8 +97,10 @@ export interface Page {
           | 'offset-image'
           | 'split-screenshot-dark';
         title: string;
-        subtitle?: string | null;
         description?: string | null;
+        announcement?: boolean | null;
+        announcementText?: string | null;
+        announcementUrl?: string | null;
         backgroundImage?: number | Media | null;
         imageUrl?: number | Media | null;
         ctaButtons?:

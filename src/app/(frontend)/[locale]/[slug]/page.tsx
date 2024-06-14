@@ -46,7 +46,6 @@ export default async function Page({ params: { slug = 'home', locale } }: PagePa
       {/* <Hero {...hero} /> */}
       <Blocks
         blocks={layout}
-        disableTopPadding={true}
       />
     </React.Fragment>
   )
