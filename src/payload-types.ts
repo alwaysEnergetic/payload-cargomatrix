@@ -103,10 +103,19 @@ export interface Page {
         announcementUrl?: string | null;
         backgroundImage?: number | Media | null;
         imageUrl?: number | Media | null;
-        ctaButtons?:
+        links?:
           | {
-              label: string;
-              url: string;
+              link: {
+                type?: ('reference' | 'custom') | null;
+                newTab?: boolean | null;
+                reference?: {
+                  relationTo: 'pages';
+                  value: number | Page;
+                } | null;
+                url?: string | null;
+                label: string;
+                appearance?: ('default' | 'primary' | 'secondary') | null;
+              };
               id?: string | null;
             }[]
           | null;

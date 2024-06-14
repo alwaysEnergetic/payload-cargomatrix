@@ -1,4 +1,5 @@
 import { Block } from 'payload/types';
+import linkGroup from '../../fields/linkGroup'
  
 export const HeroBlock: Block = {
   slug: 'hero',
@@ -88,25 +89,13 @@ export const HeroBlock: Block = {
           siblingData?.layoutType === 'split-screenshot-dark',
       },
     },
-    {
-      name: 'ctaButtons',
-      type: 'array',
-      label: 'Call to Action Buttons',
-      fields: [
-        {
-          name: 'label',
-          type: 'text',
-          required: true,
-          label: 'Button Label',
-        },
-        {
-          name: 'url',
-          type: 'text',
-          required: true,
-          label: 'Button URL',
-        },
-      ],
-    },
+    linkGroup({
+      overrides: {
+        maxRows: 2,
+      },
+      appearances: ['default', 'primary', 'secondary'],
+      label: 'Call to Action Buttons'
+    }),
   ],
 };
  

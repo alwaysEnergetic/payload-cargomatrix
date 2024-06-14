@@ -2,10 +2,12 @@ import React from 'react'
 import { Media, Page } from '../../../payload-types'
 import PayloadImage from '../../_components/Global/Image'
 
-type CATButton = {
-  name: string
-  role: string
-  imageUrl: string | Media
+type Link = {
+  type: string
+  newTab: boolean
+  url: string
+  label: string
+  appearance: string
 };
 
 
@@ -15,11 +17,11 @@ type SimpleCenteredProps = Extract<Page['layout'][0], { layoutType: 'simple-cent
   announcementText: string
   announcementUrl: string
   backgroundImage: null | Media
-  ctaButtons: CATButton[]
   announcement: boolean
+  links: Link[]
 };
 
-export const SimpleCentered: React.FC<SimpleCenteredProps> = ({ title, description, ctaButtons, announcementText, announcementUrl, announcement } ) => {
+export const SimpleCentered: React.FC<SimpleCenteredProps> = ({ title, description, announcementText, announcementUrl, announcement, links } ) => {
   return (
     <div className="relative isolate px-6 lg:px-8">
       <div
@@ -36,16 +38,16 @@ export const SimpleCentered: React.FC<SimpleCenteredProps> = ({ title, descripti
       </div>
       <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
       {announcement && announcementText && announcementUrl && (
-          <div className="hidden sm:mb-8 sm:flex sm:justify-center">
-            <div className="relative rounded-full px-3 py-1 text-sm leading-6 ring-1 ring-gray-900/10 hover:ring-gray-900/20">
-              {announcementText}{' '}
-              <a href={announcementUrl} className="font-semibold text-indigo-600">
-                <span className="absolute inset-0" aria-hidden="true" />
-                Read more <span aria-hidden="true">&rarr;</span>
-              </a>
-            </div>
+        <div className="hidden sm:mb-8 sm:flex sm:justify-center">
+          <div className="relative rounded-full px-3 py-1 text-sm leading-6 ring-1 ring-gray-900/10 hover:ring-gray-900/20">
+            {announcementText}{' '}
+            <a href={announcementUrl} className="font-semibold text-indigo-600">
+              <span className="absolute inset-0" aria-hidden="true" />
+              Read more <span aria-hidden="true">&rarr;</span>
+            </a>
           </div>
-        )}
+        </div>
+      )}
         <div className="text-center">
           <h1 className="text-4xl font-bold tracking-tight sm:text-6xl">{title}</h1>
           <p className="mt-6 text-lg leading-8">{description}</p>
