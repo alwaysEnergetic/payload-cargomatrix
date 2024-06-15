@@ -1,17 +1,7 @@
 import React from 'react'
 import { Media, Page } from '../../../payload-types'
 import PayloadImage from '../../_components/Global/Image'
-import { CMSLink } from '../../_components/Link'
-
-
-type Link = {
-  type: string
-  newTab: boolean
-  url: string
-  label: string
-  appearance: string
-};
-
+import { CMSLink, CMSLinkType } from '../../_components/Link'
 
 type SimpleCenteredProps = {
   title: string
@@ -20,10 +10,16 @@ type SimpleCenteredProps = {
   announcementUrl: string
   backgroundImage: null | Media
   announcement: boolean
-  links: Link[]
+  links: LinkType[]
 };
 
+type LinkType = {
+  id: string
+  link: CMSLinkType
+}
+
 export const SimpleCentered: React.FC<SimpleCenteredProps> = ({ title, description, announcementText, announcementUrl, announcement, links } ) => {
+  console.log(links)
   return (
     <div className="relative isolate px-6 lg:px-8">
       <div
@@ -50,24 +46,15 @@ export const SimpleCentered: React.FC<SimpleCenteredProps> = ({ title, descripti
           </div>
         </div>
       )}
-        <div className="text-center">
-          <h1 className="text-4xl font-bold tracking-tight sm:text-6xl">{title}</h1>
-          <p className="mt-6 text-lg leading-8">{description}</p>
-          <div className="mt-10 flex items-center justify-center gap-x-6">
-          <a
-            href="#"
-            className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-            >
-              Get started
-            </a>
-            <a href="#" className="text-sm font-semibold leading-6">
-              Learn more <span aria-hidden="true">→</span>
-            </a>
-          {/* {links.map((link: Link, i: number) => (
-            <CMSLink key={i} {...link} />
-          ))} */}
-          </div>
+      <div className="text-center">
+        <h1 className="text-4xl font-bold tracking-tight sm:text-6xl">{title}</h1>
+        <p className="mt-6 text-lg leading-8">{description}</p>
+        <div className="mt-10 flex items-center justify-center gap-x-6">
+          {links.map((link: LinkType, i: number) => (
+            <CMSLink key={i} {...link['link']} />
+          ))}
         </div>
+      </div>
       </div>
     </div>
   )

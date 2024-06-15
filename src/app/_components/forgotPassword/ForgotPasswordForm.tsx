@@ -49,6 +49,7 @@ export default function ForgotPasswordForm({ data }: { data: ForgotPassword }) {
                 {title}
               </h1>
             )}
+            {/* @ts-expect-error */}
             {logo && <PayloadImage image={logo} width={120} height={50} />}
             {description && <p className="text-center">{description}</p>}
           </div>

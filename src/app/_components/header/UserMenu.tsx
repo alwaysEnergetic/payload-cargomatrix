@@ -69,9 +69,13 @@ export default function UserMenu({ locales }: { locales: Locale[] }) {
                 if (typeof location === 'string') return null
 
                 return (
-                  <Link href="#" className="px-2 py-1 min-w-32 text-sm" key={location.id}>
-                    {location.name}
-                  </Link>
+                  <>
+                    {/* @ts-expect-error */}
+                    <Link href="#" className="px-2 py-1 min-w-32 text-sm" key={location.id}>
+                      {/* @ts-expect-error */}
+                      {location.name}
+                    </Link>
+                  </>
                 )
               })}
             </PopoverPanel>

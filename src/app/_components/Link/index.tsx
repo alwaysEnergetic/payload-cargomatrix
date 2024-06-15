@@ -3,9 +3,9 @@ import Link from 'next/link'
 
 import { Page } from '../../../payload-types'
 
-type CMSLinkType = {
+export type CMSLinkType = {
   type?: 'custom' | 'reference'
-  url?: string | undefined
+  url: string
   newTab?: boolean
   reference?: {
     value: string | Page
@@ -27,6 +27,7 @@ export const CMSLink: React.FC<CMSLinkType> = ({
   children,
   className,
 }) => {
+  console.log('!!!!!!!!!!!!!!!!!!!')
   const href =
     type === 'reference' && typeof reference?.value === 'object' && reference.value.slug
       ? `${reference?.relationTo !== 'pages' ? `/${reference?.relationTo}` : ''}/${
@@ -34,24 +35,30 @@ export const CMSLink: React.FC<CMSLinkType> = ({
         }`
       : url
 
+  console.log(type)
+  console.log(url)
+  console.log(newTab)
+  console.log(reference)
+  console.log(label)
+
+
   if (!href) return null
 
   const newTabProps = newTab ? { target: '_blank', rel: 'noopener noreferrer' } : {}
-//   if (!appearance) {
-
-//     if (href || url) {
-//       return (
-//         <Link {...newTabProps} href={href || url} className={className}>
-//           {label && label}
-//           {children && children}
-//         </Link>
-//       )
-//     }
-//   }
+  if (!appearance || appearance === 'default') {
+    if (href || url) {
+      return (
+        <Link {...newTabProps} href={href || url} className="text-sm font-semibold leading-6">
+          {label && label}
+          {children && children}
+        </Link>
+      )
+    }
+  }
 
   return (
     <Link
-      className={className}
+      className="text-sm font-semibold leading-6"
       {...newTabProps}
       href={href}
     >

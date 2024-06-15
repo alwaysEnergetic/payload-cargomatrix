@@ -8,7 +8,6 @@ const GET = async () => {
   const payloadConfig = await configPromise
   const payload = await getPayload({ config: payloadConfig })
   const settings = await payload.findGlobal({ slug: 'settings' })
-
   return {
     locales: payloadConfig.localization
       ? payloadConfig.localization.locales.map((locale) => ({
@@ -26,6 +25,7 @@ export default async function Header() {
       <div className="bg-post-yellow">
         <div className="cont mx-auto py-5 flex items-center justify-between">
           <Link href="/">
+            {/* @ts-expect-error */}
             <PayloadImage image={settings.logo} width={150} height={50} />
           </Link>
           <CTAs locales={locales} />
