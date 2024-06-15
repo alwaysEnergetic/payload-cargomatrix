@@ -4,7 +4,7 @@ import AuthProvider from '../../_providers/AuthProvider'
 import Footer from '@/app/_components/Footer'
 import Header from '@/app/_components/Header'
 
-import './globals.css'
+import '@/app/_css/globals.scss'
 
 type Props = {
   params: {
@@ -19,9 +19,9 @@ export default async function RootLayout({ params: { locale }, children }: Props
       <body>
         <AuthProvider>
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <Header />
-          <main className="pt-20">{children}</main>
-          <Footer />
+            <Header />
+            <main className="pt-20">{children}</main>
+            <Footer />
           </ThemeProvider>
         </AuthProvider>
       </body>
