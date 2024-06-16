@@ -21,6 +21,7 @@ export const Settings: GlobalConfig = {
                   name: 'mode', // required
                   type: 'radio', // required
                   label: 'Mode',
+                  required: true,
                   options: [
                     // required
                     {

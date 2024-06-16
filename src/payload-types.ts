@@ -235,7 +235,7 @@ export interface PayloadMigration {
 export interface Setting {
   id: number;
   logo: number | Media;
-  mode?: ('light' | 'dark') | null;
+  mode: 'light' | 'dark';
   radius?: ('0' | '0.3' | '0.5' | '0.75' | '1') | null;
   color: string;
   updatedAt?: string | null;

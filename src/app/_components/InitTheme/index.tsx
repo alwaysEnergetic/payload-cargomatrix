@@ -1,6 +1,9 @@
 import Script from 'next/script'
-
-export const InitTheme: React.FC = () => {
+type InitThemeProps = {
+  color: string;
+  radius: string | null | undefined;
+};
+export const InitTheme: React.FC<InitThemeProps> = ({ color, radius }) => {
   return (
     // eslint-disable-next-line @next/next/no-before-interactive-script-outside-document
     <Script
@@ -14,8 +17,8 @@ export const InitTheme: React.FC = () => {
                         document.body.classList.remove(className)
                     }
                     })
-                    document.body.classList.add('theme-green');
-                    document.body.style.setProperty('--radius', '0.5rem');
+                    document.body.classList.add('theme-${color}');
+                    document.body.style.setProperty('--radius', '${radius}rem');
                 })();
                 `,
       }}
