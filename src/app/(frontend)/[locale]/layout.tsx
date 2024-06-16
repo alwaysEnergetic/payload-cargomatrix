@@ -7,13 +7,6 @@ import Footer from '@/app/_components/Footer'
 import Header from '@/app/_components/Header'
 import '@/app/_css/globals.scss'
 
-// import { themes } from '@/app/constants'
-// import { useConfig } from '@/app/_hooks/use-config'
-// import React from 'react'
-
-// import { ThemeSwitcher } from '@/app/_components/ThemeSwitcher'
-
-
 type Props = {
   params: {
     locale: string

@@ -14,7 +14,8 @@ export const InitTheme: React.FC = () => {
                         document.body.classList.remove(className)
                     }
                     })
-                    return document.body.classList.add('theme-green')
+                    document.body.classList.add('theme-green');
+                    document.body.style.setProperty('--radius', '0.5rem');
                 })();
                 `,
       }}

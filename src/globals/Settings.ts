@@ -1,5 +1,7 @@
 import { GlobalConfig } from 'payload/types'
 
+import { ColorField } from '../fields/ColorField'
+
 export const Settings: GlobalConfig = {
   slug: 'settings',
   fields: [
@@ -9,5 +11,6 @@ export const Settings: GlobalConfig = {
       relationTo: 'media',
       required: true,
     },
+    ColorField,
   ],
 }
