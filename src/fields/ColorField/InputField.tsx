@@ -1,5 +1,5 @@
 'use client';
-import React from 'react';
+import React, { useEffect } from 'react';
 
 // this is how we'll interface with Payload itself
 import { useField } from '@payloadcms/ui/forms/useField';
@@ -37,6 +37,10 @@ function InputFieldInner(props: InputFieldInnerProps) {
         path,
     });
 
+    useEffect(() => {
+        console.log(value)
+    }, [value])
+
     return (
         <div className={baseClass}>
             <FieldLabel htmlFor={path} label={label} required={required} />
@@ -47,7 +51,7 @@ function InputFieldInner(props: InputFieldInnerProps) {
                             type="button"
                             key={theme?.activeColor[mode === 'dark' ? 'dark' : 'light']}
                             className={`chip ${
-                                theme?.activeColor[mode === 'dark' ? 'dark' : 'light'] === value ? 'chip--selected' : ''
+                                theme?.name === value ? 'chip--selected' : ''
                             } chip--clickable`}
                             style={
                                 {
@@ -57,7 +61,7 @@ function InputFieldInner(props: InputFieldInnerProps) {
                                 } as React.CSSProperties
                               }
                             aria-label={theme.name}
-                            onClick={() => setValue(theme?.activeColor[mode === 'dark' ? 'dark' : 'light'])}
+                            onClick={() => setValue(theme.name)}
                         >
                         </button>
                         <span className='color-title'>{theme.name}</span>

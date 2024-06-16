@@ -11,6 +11,50 @@ export const Settings: GlobalConfig = {
       relationTo: 'media',
       required: true,
     },
-    ColorField,
+    {
+      type: 'tabs',
+      tabs: [
+          {
+              label: 'Theme Setting',
+              fields: [
+                {
+                  name: 'mode', // required
+                  type: 'radio', // required
+                  label: 'Mode',
+                  options: [
+                    // required
+                    {
+                      label: 'Light',
+                      value: 'light',
+                    },
+                    {
+                      label: 'Dark',
+                      value: 'dark',
+                    },
+                  ],
+                  admin: {
+                    layout: 'horizontal',
+                  },
+                },
+                {
+                  name: 'radius', // required
+                  type: 'radio', // required
+                  label: 'Radius',
+                  options: [
+                    '0',
+                    '0.3',
+                    '0.5',
+                    '0.75',
+                    '1'
+                  ],
+                  admin: {
+                    layout: 'horizontal',
+                  },
+                },
+                ColorField,
+              ],
+          },
+      ],
+  },
   ],
 }
