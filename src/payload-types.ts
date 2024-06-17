@@ -103,6 +103,7 @@ export interface Page {
         announcementUrl?: string | null;
         logo?: boolean | null;
         logoImage?: number | Media | null;
+        trackingCode?: string | null;
         backgroundImage?: number | Media | null;
         imageUrl?: number | Media | null;
         links?:

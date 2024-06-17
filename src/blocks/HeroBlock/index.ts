@@ -83,6 +83,15 @@ export const HeroBlock: Block = {
       },
     },
     {
+      name: 'trackingCode', // required
+      type: 'code', // required
+      admin: {
+        language: 'javascript',
+        condition: (data, siblingData) => 
+          siblingData?.layoutType === 'split-code-example'
+      },
+    },
+    {
       name: 'backgroundImage',
       type: 'upload',
       relationTo: 'media',

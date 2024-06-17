@@ -4,14 +4,14 @@ import { Page } from './../../../payload-types.js'
 
 import { SimpleCentered } from './simpleCentered'
 import { SplitWithScreenshot } from './SplitWithScreenshot'
-
+import { SplitCodeExample } from './SplitCodeExample'
 
 import { toKebabCase } from '../../_utilities/toKebabCase'
 
-
 const layoutComponents = {
   'simple-centered': SimpleCentered,
-  'split-screenshot': SplitWithScreenshot
+  'split-screenshot': SplitWithScreenshot,
+  'split-code-example': SplitCodeExample
 }
 
 export const HeroBlock: React.FC<{
