@@ -24,9 +24,6 @@ export const HeroBlock: React.FC<{
         if (layoutType && layoutType in layoutComponents) {
         // @ts-expect-error
         const Layout = layoutComponents[layoutType]
-        console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
-        console.log('block')
-        console.log(block)
         if (Layout) {
             return (
               <Layout

@@ -66,6 +66,11 @@ export const HeroBlock: Block = {
       name: 'logo',
       type: 'checkbox',
       label: 'Show Logo',
+      admin: {
+        condition: (data, siblingData) => 
+          siblingData?.layoutType === 'split-screenshot' ||
+          siblingData?.layoutType === 'split-code-example'
+      },
     },
     {
       name: 'logoImage',
@@ -96,7 +101,6 @@ export const HeroBlock: Block = {
       admin: {
         condition: (data, siblingData) =>
           siblingData?.layoutType === 'split-screenshot' ||
-          siblingData?.layoutType === 'split-code-example' ||
           siblingData?.layoutType === 'app-screenshot' ||
           siblingData?.layoutType === 'app-screenshot-dark' ||
           siblingData?.layoutType === 'phone-mockup' ||
