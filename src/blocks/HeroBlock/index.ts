@@ -14,7 +14,6 @@ export const HeroBlock: Block = {
         { label: 'Split with Code Example', value: 'split-code-example' },
         { label: 'Simple Centered with Background Image', value: 'simple-centered-bg' },
         { label: 'With App Screenshot', value: 'app-screenshot' },
-        { label: 'With App Screenshot on Dark', value: 'app-screenshot-dark' },
         { label: 'With Phone Mockup', value: 'phone-mockup' },
         { label: 'Split with Image', value: 'split-image' },
         { label: 'With Angled Image on Right', value: 'angled-image-right' },
@@ -41,7 +40,9 @@ export const HeroBlock: Block = {
       type: 'checkbox',
       label: 'Show Announcement',
       admin: {
-        condition: (data, siblingData) => siblingData?.layoutType === 'simple-centered',
+        condition: (data, siblingData) => 
+          siblingData?.layoutType === 'simple-centered' ||
+          siblingData?.layoutType === 'simple-centered-bg'
       },
     },
     {
@@ -111,7 +112,6 @@ export const HeroBlock: Block = {
         condition: (data, siblingData) =>
           siblingData?.layoutType === 'split-screenshot' ||
           siblingData?.layoutType === 'app-screenshot' ||
-          siblingData?.layoutType === 'app-screenshot-dark' ||
           siblingData?.layoutType === 'phone-mockup' ||
           siblingData?.layoutType === 'split-image' ||
           siblingData?.layoutType === 'angled-image-right' ||

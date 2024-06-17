@@ -2,7 +2,7 @@ import React, { Fragment } from 'react'
 
 import { Page } from './../../../payload-types.js'
 
-import { SimpleCentered } from './simpleCentered'
+import { SimpleCentered } from './SimpleCentered'
 import { SplitWithScreenshot } from './SplitWithScreenshot'
 import { SplitCodeExample } from './SplitCodeExample'
 
@@ -11,7 +11,9 @@ import { toKebabCase } from '../../_utilities/toKebabCase'
 const layoutComponents = {
   'simple-centered': SimpleCentered,
   'split-screenshot': SplitWithScreenshot,
-  'split-code-example': SplitCodeExample
+  'split-code-example': SplitCodeExample,
+  'simple-centered-bg': SimpleCentered,
+  'app-screenshot': SimpleCentered,
 }
 
 export const HeroBlock: React.FC<{
