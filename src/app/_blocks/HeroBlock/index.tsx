@@ -14,6 +14,8 @@ const layoutComponents = {
   'split-code-example': SplitCodeExample,
   'simple-centered-bg': SimpleCentered,
   'app-screenshot': SimpleCentered,
+  'phone-mockup': SplitWithScreenshot,
+
 }
 
 export const HeroBlock: React.FC<{
