@@ -37,10 +37,6 @@ function InputFieldInner(props: InputFieldInnerProps) {
         path,
     });
 
-    useEffect(() => {
-        console.log(value)
-    }, [value])
-
     return (
         <div className={baseClass}>
             <FieldLabel htmlFor={path} label={label} required={required} />

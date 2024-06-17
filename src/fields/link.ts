@@ -15,9 +15,25 @@ export const appearanceOptions = {
     label: 'Default',
     value: 'default',
   },
+  destructive: {
+    label: 'Destructive Button',
+    value: 'destructive',
+  },
+  outline: {
+    label: 'Outline Button',
+    value: 'outline',
+  },
+  ghost: {
+    label: 'Ghost Button',
+    value: 'ghost',
+  },
+  link: {
+    label: 'Link Button',
+    value: 'link',
+  },
 }
 
-export type LinkAppearances = 'primary' | 'secondary' | 'default'
+export type LinkAppearances = 'default' | 'primary' | 'secondary' | 'destructive' | 'outline' | 'ghost' | 'link'
 
 type LinkType = (options?: {
   appearances?: LinkAppearances[] | false
@@ -127,6 +143,11 @@ const link: LinkType = ({ appearances, disableLabel = false, overrides = {} } = 
       appearanceOptions.default,
       appearanceOptions.primary,
       appearanceOptions.secondary,
+      appearanceOptions.destructive,
+      appearanceOptions.outline,
+      appearanceOptions.ghost,
+      appearanceOptions.link,
+
     ]
 
     if (appearances) {

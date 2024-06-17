@@ -93,7 +93,7 @@ export const HeroBlock: Block = {
       overrides: {
         maxRows: 2,
       },
-      appearances: ['default', 'primary', 'secondary'],
+      appearances: ['default', 'primary', 'secondary', 'destructive', 'outline', 'ghost', 'link'],
       label: 'Call to Action Buttons'
     }),
   ],

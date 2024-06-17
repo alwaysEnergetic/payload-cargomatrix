@@ -1,6 +1,5 @@
 import React from 'react'
-import { Media, Page } from '../../../payload-types'
-import PayloadImage from '../../_components/Global/Image'
+import { Media } from '../../../payload-types'
 import { CMSLink, CMSLinkType } from '../../_components/Link'
 
 type SimpleCenteredProps = {
@@ -19,7 +18,6 @@ type LinkType = {
 }
 
 export const SimpleCentered: React.FC<SimpleCenteredProps> = ({ title, description, announcementText, announcementUrl, announcement, links } ) => {
-  console.log(links)
   return (
     <div className="relative isolate px-6 lg:px-8">
       <div

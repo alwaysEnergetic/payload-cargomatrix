@@ -2,6 +2,7 @@ import React from 'react'
 import Link from 'next/link'
 
 import { Page } from '../../../payload-types'
+import {Button } from "@/components/ui/button"
 
 export type CMSLinkType = {
   type?: 'custom' | 'reference'
@@ -12,11 +13,10 @@ export type CMSLinkType = {
     relationTo: 'pages'
   }
   label?: string
-  appearance?: 'default' | 'primary' | 'secondary' | 'none'
+  appearance: string
   children?: React.ReactNode
   className?: string
 }
-
 export const CMSLink: React.FC<CMSLinkType> = ({
   type,
   url,
@@ -24,45 +24,26 @@ export const CMSLink: React.FC<CMSLinkType> = ({
   reference,
   label,
   appearance,
-  children,
   className,
 }) => {
-  console.log('!!!!!!!!!!!!!!!!!!!')
   const href =
     type === 'reference' && typeof reference?.value === 'object' && reference.value.slug
       ? `${reference?.relationTo !== 'pages' ? `/${reference?.relationTo}` : ''}/${
           reference.value.slug
         }`
       : url
-
-  console.log(type)
-  console.log(url)
-  console.log(newTab)
-  console.log(reference)
-  console.log(label)
-
-
   if (!href) return null
 
   const newTabProps = newTab ? { target: '_blank', rel: 'noopener noreferrer' } : {}
-  if (!appearance || appearance === 'default') {
-    if (href || url) {
-      return (
-        <Link {...newTabProps} href={href || url} className="text-sm font-semibold leading-6">
-          {label && label}
-          {children && children}
-        </Link>
-      )
-    }
-  }
-
   return (
-    <Link
-      className="text-sm font-semibold leading-6"
-      {...newTabProps}
-      href={href}
+    <Button
+      asChild
+      // @ts-expect-error
+      variant={appearance}
+      size="sm"
+      className={className}
     >
-    {label && label}
-    </Link>
+      <Link href={href} {...newTabProps} target="_blank">{label && label}</Link>
+    </Button>
   )
 }
