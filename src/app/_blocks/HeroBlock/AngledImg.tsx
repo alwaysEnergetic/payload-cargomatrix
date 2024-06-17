@@ -27,7 +27,7 @@ export const AngledImg: React.FC<AngledImgProps> = ({ title, logo, logoImage, de
       <div className="mx-auto max-w-7xl">
         <div className="relative z-10 pt-14 lg:w-full lg:max-w-2xl">
           <svg
-            className="absolute inset-y-0 right-8 hidden h-full w-80 translate-x-1/2 transform fill-white lg:block dark:fill-[var(--background)]"
+            className="absolute inset-y-0 right-8 hidden h-full w-80 translate-x-1/2 transform fill-white lg:block dark:fill-background"
             viewBox="0 0 100 100"
             preserveAspectRatio="none"
             aria-hidden="true"
