@@ -3,12 +3,15 @@ import React, { Fragment } from 'react'
 import { Page } from './../../../payload-types.js'
 
 import { SimpleCentered } from './simpleCentered'
+import { SplitWithScreenshot } from './SplitWithScreenshot'
+
 
 import { toKebabCase } from '../../_utilities/toKebabCase'
 
 
 const layoutComponents = {
-  'simple-centered': SimpleCentered
+  'simple-centered': SimpleCentered,
+  'split-screenshot': SplitWithScreenshot
 }
 
 export const HeroBlock: React.FC<{
@@ -21,6 +24,9 @@ export const HeroBlock: React.FC<{
         if (layoutType && layoutType in layoutComponents) {
         // @ts-expect-error
         const Layout = layoutComponents[layoutType]
+        console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
+        console.log('block')
+        console.log(block)
         if (Layout) {
             return (
               <Layout

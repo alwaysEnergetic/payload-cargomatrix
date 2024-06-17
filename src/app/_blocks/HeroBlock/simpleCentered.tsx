@@ -7,7 +7,6 @@ type SimpleCenteredProps = {
   description: string
   announcementText: string
   announcementUrl: string
-  backgroundImage: null | Media
   announcement: boolean
   links: LinkType[]
 };

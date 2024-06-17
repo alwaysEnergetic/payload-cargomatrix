@@ -40,6 +40,9 @@ export const HeroBlock: Block = {
       name: 'announcement',
       type: 'checkbox',
       label: 'Show Announcement',
+      admin: {
+        condition: (data, siblingData) => siblingData?.layoutType === 'simple-centered',
+      },
     },
     {
       name: 'announcementText',
@@ -57,6 +60,21 @@ export const HeroBlock: Block = {
       label: 'Announcement URL',
       admin: {
         condition: (data, siblingData) => siblingData?.announcement,
+      },
+    },
+    {
+      name: 'logo',
+      type: 'checkbox',
+      label: 'Show Logo',
+    },
+    {
+      name: 'logoImage',
+      type: 'upload',
+      relationTo: 'media',
+      required: false,
+      label: 'Logo Image',
+      admin: {
+        condition: (data, siblingData) => siblingData?.logo,
       },
     },
     {

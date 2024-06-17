@@ -101,6 +101,8 @@ export interface Page {
         announcement?: boolean | null;
         announcementText?: string | null;
         announcementUrl?: string | null;
+        logo?: boolean | null;
+        logoImage?: number | Media | null;
         backgroundImage?: number | Media | null;
         imageUrl?: number | Media | null;
         links?:
@@ -114,7 +116,9 @@ export interface Page {
                 } | null;
                 url?: string | null;
                 label: string;
-                appearance?: ('default' | 'primary' | 'secondary') | null;
+                appearance?:
+                  | ('default' | 'primary' | 'secondary' | 'destructive' | 'outline' | 'ghost' | 'link')
+                  | null;
               };
               id?: string | null;
             }[]
