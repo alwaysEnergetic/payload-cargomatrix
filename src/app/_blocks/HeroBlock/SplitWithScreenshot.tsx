@@ -11,6 +11,8 @@ type SplitWithScreenshotProps = {
   logoImage: null | Media
   imageUrl?: null | Media
   layoutType: string
+  imageTiles: Image[]
+
 };
 
 type LinkType = {
@@ -18,7 +20,48 @@ type LinkType = {
   link: CMSLinkType
 }
 
-export const SplitWithScreenshot: React.FC<SplitWithScreenshotProps> = ({ layoutType, title, description, logo, logoImage, imageUrl, links } ) => {
+type Image = {
+  id: string
+  image: Media | null 
+}
+const images = [
+  {
+    src: "/api/media/file/1.png",
+    alt: "Image 1",
+    group: 1,
+  },
+  {
+    src: "/api/media/file/2.png",
+    alt: "Image 2",
+    group: 2,
+  },
+  {
+    src: "/api/media/file/3.png",
+    alt: "Image 3",
+    group: 2,
+  },
+  {
+    src: "/api/media/file/4.png",
+    alt: "Image 4",
+    group: 3,
+  },
+  {
+    src: "/api/media/file/5.png",
+    alt: "Image 5",
+    group: 3,
+  }
+];
+
+
+export const SplitWithScreenshot: React.FC<SplitWithScreenshotProps> = ({ layoutType, imageTiles, title, description, logo, logoImage, imageUrl, links } ) => {
+  const groupedImages = images.reduce((acc, image) => {
+    if (!acc[image.group]) {
+      acc[image.group] = [];
+    }
+    acc[image.group].push(image);
+    return acc;
+  }, {});
+
   return (
     <div className="relative isolate overflow-hidden">
       <svg
@@ -78,6 +121,25 @@ export const SplitWithScreenshot: React.FC<SplitWithScreenshotProps> = ({ layout
               </div>
             </div>
           </div>
+        }
+        { layoutType == 'image-tiles' &&
+          <div className="mt-14 flex justify-end gap-8 sm:-mt-44 sm:justify-start sm:pl-20 lg:mt-0 lg:pl-0">
+          {Object.keys(groupedImages).map((group, index) => (
+            <div
+              key={index}
+              className={`ml-auto w-44 flex-none space-y-8 pt-32 sm:ml-0 sm:pt-80 lg:order-last lg:pt-36 xl:order-none xl:pt-80 ${
+                index % 2 === 0 ? 'order-last' : 'order-first'
+              }`}
+            >
+              {groupedImages[group].map((image, idx) => (
+                <div className="relative" key={idx}>
+                  <PayloadImage image={image} width={2432} height={1442} className="aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-cover shadow-lg" />
+                  <div className="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-inset ring-gray-900/10" />
+                </div>
+              ))}
+            </div>
+          ))}
+        </div>
         }
         { layoutType == 'phone-mockup' &&
           <div className="mt-16 sm:mt-24 lg:mt-0 lg:flex-shrink-0 lg:flex-grow">

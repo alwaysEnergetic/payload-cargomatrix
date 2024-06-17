@@ -89,13 +89,11 @@ export interface Page {
           | 'split-code-example'
           | 'simple-centered-bg'
           | 'app-screenshot'
-          | 'app-screenshot-dark'
           | 'phone-mockup'
           | 'split-image'
           | 'angled-image-right'
           | 'image-tiles'
-          | 'offset-image'
-          | 'split-screenshot-dark';
+          | 'offset-image';
         title: string;
         description?: string | null;
         announcement?: boolean | null;
@@ -106,6 +104,12 @@ export interface Page {
         trackingCode?: string | null;
         backgroundImage?: number | Media | null;
         imageUrl?: number | Media | null;
+        imageTiles?:
+          | {
+              image: number | Media;
+              id?: string | null;
+            }[]
+          | null;
         links?:
           | {
               link: {
@@ -173,6 +177,49 @@ export interface Page {
         id?: string | null;
         blockName?: string | null;
         blockType: 'featureSection';
+      }
+    | {
+        layoutType:
+          | 'simple-centered'
+          | 'simple-justified'
+          | 'simple-inline'
+          | 'simple-stacked'
+          | 'split-image'
+          | 'background-image'
+          | 'logo-grid'
+          | 'testimonial'
+          | 'video'
+          | 'two-columns-image'
+          | 'two-columns-bullets'
+          | 'offset-bullets';
+        title: string;
+        subtitle?: string | null;
+        description?: string | null;
+        imageUrl?: number | Media | null;
+        logoGrid?:
+          | {
+              logo: number | Media;
+              id?: string | null;
+            }[]
+          | null;
+        testimonial?: string | null;
+        videoUrl?: string | null;
+        bullets?:
+          | {
+              bullet: string;
+              id?: string | null;
+            }[]
+          | null;
+        ctaButtons?:
+          | {
+              label: string;
+              url: string;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'cta';
       }
   )[];
   slug?: string | null;

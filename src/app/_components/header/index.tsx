@@ -21,7 +21,7 @@ const GET = async () => {
 export default async function Header() {
   const { settings, locales } = await GET()
   return (
-    <header className="fixed top-0 left-0 right-0 z-10">
+    <header className="fixed top-0 left-0 right-0 z-50">
       <div className="bg-post-yellow">
         <div className="cont mx-auto py-5 flex items-center justify-between">
           <Link href="/">

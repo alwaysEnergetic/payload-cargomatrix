@@ -19,7 +19,6 @@ export const HeroBlock: Block = {
         { label: 'With Angled Image on Right', value: 'angled-image-right' },
         { label: 'With Image Tiles', value: 'image-tiles' },
         { label: 'With Offset Image', value: 'offset-image' },
-        { label: 'Split with Screenshot on Dark', value: 'split-screenshot-dark' },
       ],
       label: 'Layout Type',
     },
@@ -42,7 +41,9 @@ export const HeroBlock: Block = {
       admin: {
         condition: (data, siblingData) => 
           siblingData?.layoutType === 'simple-centered' ||
-          siblingData?.layoutType === 'simple-centered-bg'
+          siblingData?.layoutType === 'simple-centered-bg' || 
+          siblingData?.layoutType === 'angled-image-right' || 
+          siblingData?.layoutType === 'split-image'
       },
     },
     {
@@ -70,6 +71,7 @@ export const HeroBlock: Block = {
       admin: {
         condition: (data, siblingData) => 
           siblingData?.layoutType === 'split-screenshot' ||
+          siblingData?.layoutType === 'split-image' ||
           siblingData?.layoutType === 'split-code-example'
       },
     },
@@ -115,9 +117,28 @@ export const HeroBlock: Block = {
           siblingData?.layoutType === 'phone-mockup' ||
           siblingData?.layoutType === 'split-image' ||
           siblingData?.layoutType === 'angled-image-right' ||
-          siblingData?.layoutType === 'image-tiles' ||
           siblingData?.layoutType === 'offset-image' ||
           siblingData?.layoutType === 'split-screenshot-dark',
+      },
+    },
+    {
+      name: 'imageTiles', // required
+      type: 'array', // required
+      label: 'Image Tiles',
+      required: true,
+      minRows: 2,
+      maxRows: 6,
+      fields: [
+        {
+          name: 'image',
+          type: 'upload',
+          relationTo: 'media',
+          required: true,
+        },
+      ],
+      admin: {
+        condition: (data, siblingData) =>
+          siblingData?.layoutType === 'image-tiles'
       },
     },
     linkGroup({

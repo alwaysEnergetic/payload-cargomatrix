@@ -5,6 +5,8 @@ import { Page } from './../../../payload-types.js'
 import { SimpleCentered } from './SimpleCentered'
 import { SplitWithScreenshot } from './SplitWithScreenshot'
 import { SplitCodeExample } from './SplitCodeExample'
+import { SplitImage } from './SplitImage'
+import { AngledImg } from './AngledImg'
 
 import { toKebabCase } from '../../_utilities/toKebabCase'
 
@@ -15,6 +17,9 @@ const layoutComponents = {
   'simple-centered-bg': SimpleCentered,
   'app-screenshot': SimpleCentered,
   'phone-mockup': SplitWithScreenshot,
+  'split-image': SplitImage,
+  'angled-image-right': AngledImg,
+  'image-tiles': SplitWithScreenshot,
 
 }
 

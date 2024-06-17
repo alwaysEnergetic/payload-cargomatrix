@@ -5,9 +5,10 @@ import { slugField } from '../../fields/slug'
 import { loggedIn } from './access/loggedIn'
 import { adminsOrPublished } from './access/adminsOrPublished'
 
+//Hero & Blocks & CTA
 import { HeroBlock } from './../../blocks/HeroBlock'
 import { FeaturesBlock } from './../../blocks/FeaturesBlock'
-//Hero & Blocks
+import { CTABlock } from './../../blocks/CTABlock'
 
 export const Pages: CollectionConfig = {
   slug: 'pages',
@@ -62,7 +63,8 @@ export const Pages: CollectionConfig = {
       required: true,
       blocks: [
         HeroBlock,
-        FeaturesBlock
+        FeaturesBlock,
+        CTABlock
       ],
     },
     slugField(),
