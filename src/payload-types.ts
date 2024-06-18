@@ -221,6 +221,448 @@ export interface Page {
         blockName?: string | null;
         blockType: 'cta';
       }
+    | {
+        layoutType:
+          | 'simple-list-avatars'
+          | 'grid-background'
+          | 'large-avatars'
+          | 'simple-centered'
+          | 'simple-list-social-icons'
+          | 'grid-simple-overlays'
+          | 'grid-rounded-corners'
+          | 'with-bio'
+          | 'offset-images'
+          | 'vertical-list';
+        title: string;
+        subtitle?: string | null;
+        description?: string | null;
+        teamMembers?:
+          | {
+              name: string;
+              role: string;
+              imageUrl: number | Media;
+              bio?: string | null;
+              location?: string | null;
+              socialMediaUrls?:
+                | {
+                    platform: string;
+                    url: string;
+                    id?: string | null;
+                  }[]
+                | null;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'team';
+      }
+    | {
+        layoutType:
+          | 'simple-centered'
+          | 'split-image'
+          | 'simple-background'
+          | 'simple-large-heading'
+          | 'offset-background'
+          | 'split-screenshot'
+          | 'alternating-background'
+          | 'with-bullets'
+          | 'with-cards'
+          | 'split-feature-list'
+          | 'with-grid'
+          | 'split-testimonial';
+        title: string;
+        subtitle?: string | null;
+        description?: string | null;
+        imageUrl?: number | Media | null;
+        faqItems?:
+          | {
+              question: string;
+              answer: string;
+              id?: string | null;
+            }[]
+          | null;
+        bullets?:
+          | {
+              bullet: string;
+              id?: string | null;
+            }[]
+          | null;
+        cards?:
+          | {
+              question: string;
+              answer: string;
+              id?: string | null;
+            }[]
+          | null;
+        testimonial?: string | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'faq';
+      }
+    | {
+        layoutType:
+          | 'simple-centered'
+          | 'split-form'
+          | 'bg-image'
+          | 'with-map'
+          | 'simple-justified'
+          | 'split-address'
+          | 'simple-illustration'
+          | 'stacked-illustration'
+          | 'split-social-links'
+          | 'split-list';
+        title: string;
+        subtitle?: string | null;
+        description?: string | null;
+        bgImage?: number | Media | null;
+        form?: {
+          formTitle: string;
+          fields?:
+            | {
+                name: string;
+                type: 'text' | 'email' | 'textarea';
+                id?: string | null;
+              }[]
+            | null;
+        };
+        map?: {
+          mapTitle: string;
+          mapUrl: string;
+        };
+        address?: {
+          title: string;
+          lines?:
+            | {
+                line: string;
+                id?: string | null;
+              }[]
+            | null;
+        };
+        illustration?: number | Media | null;
+        socialLinks?:
+          | {
+              platform: string;
+              url: string;
+              id?: string | null;
+            }[]
+          | null;
+        listItems?:
+          | {
+              item: string;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'contact';
+      }
+    | {
+        layoutType:
+          | 'simple-centered'
+          | 'split-image'
+          | 'background-image'
+          | 'simple-list'
+          | 'with-cards'
+          | 'split-description'
+          | 'with-icons'
+          | 'with-text';
+        title: string;
+        subtitle?: string | null;
+        description?: string | null;
+        backgroundImage?: number | Media | null;
+        imageUrl?: number | Media | null;
+        stats?:
+          | {
+              label: string;
+              value: string;
+              icon?: number | Media | null;
+              id?: string | null;
+            }[]
+          | null;
+        cards?:
+          | {
+              title: string;
+              description: string;
+              icon?: number | Media | null;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'stats';
+      }
+    | {
+        layoutType:
+          | 'simple-centered'
+          | 'simple-list'
+          | 'split-image'
+          | 'background-image'
+          | 'grid-background'
+          | 'grid-images'
+          | 'logo-grid'
+          | 'alternating-background'
+          | 'sidebar'
+          | 'video';
+        title: string;
+        subtitle?: string | null;
+        description?: string | null;
+        backgroundImage?: number | Media | null;
+        imageUrl?: number | Media | null;
+        logoGrid?:
+          | {
+              logo: number | Media;
+              id?: string | null;
+            }[]
+          | null;
+        testimonials?:
+          | {
+              quote: string;
+              authorName: string;
+              authorTitle?: string | null;
+              authorImage?: number | Media | null;
+              companyLogo?: number | Media | null;
+              id?: string | null;
+            }[]
+          | null;
+        videoUrl?: string | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'testimonials';
+      }
+    | {
+        layoutType:
+          | 'simple-centered'
+          | 'simple-grid'
+          | 'comparison'
+          | 'feature-list'
+          | 'toggle'
+          | 'background'
+          | 'split-image'
+          | 'simple-list';
+        title: string;
+        subtitle?: string | null;
+        description?: string | null;
+        backgroundImage?: number | Media | null;
+        imageUrl?: number | Media | null;
+        pricingPlans?:
+          | {
+              planName: string;
+              price: string;
+              features?:
+                | {
+                    feature: string;
+                    id?: string | null;
+                  }[]
+                | null;
+              cta: string;
+              ctaUrl: string;
+              id?: string | null;
+            }[]
+          | null;
+        comparisonTable?: {
+          columns?:
+            | {
+                columnName: string;
+                id?: string | null;
+              }[]
+            | null;
+          rows?:
+            | {
+                rowName: string;
+                values?:
+                  | {
+                      value: string;
+                      id?: string | null;
+                    }[]
+                  | null;
+                id?: string | null;
+              }[]
+            | null;
+        };
+        toggleOptions?: {
+          option1: string;
+          option2: string;
+        };
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'pricing';
+      }
+    | {
+        layoutType:
+          | 'simple-centered'
+          | 'with-image'
+          | 'background-image'
+          | 'split-image'
+          | 'split-columns'
+          | 'simple-justified'
+          | 'stacked-image'
+          | 'split-form';
+        title: string;
+        subtitle?: string | null;
+        description?: string | null;
+        imageUrl?: number | Media | null;
+        backgroundImage?: number | Media | null;
+        form?: {
+          formTitle: string;
+          formFields?:
+            | {
+                fieldName: string;
+                fieldType: 'text' | 'email';
+                id?: string | null;
+              }[]
+            | null;
+        };
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'newsletter';
+      }
+    | {
+        layoutType:
+          | 'simple-centered'
+          | 'centered-background'
+          | 'split-image'
+          | 'with-cta'
+          | 'with-video'
+          | 'simple-search'
+          | 'simple-logo'
+          | 'stacked-background'
+          | 'logo-grid';
+        title: string;
+        subtitle?: string | null;
+        description?: string | null;
+        backgroundImage?: number | Media | null;
+        imageUrl?: number | Media | null;
+        videoUrl?: string | null;
+        cta?: {
+          ctaLabel: string;
+          ctaUrl: string;
+        };
+        search?: {
+          placeholder: string;
+        };
+        logoGrid?:
+          | {
+              logo: number | Media;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'header';
+      }
+    | {
+        layoutType:
+          | 'simple-list'
+          | 'with-sidebar'
+          | 'grid-featured-post'
+          | 'grid-sidebar'
+          | 'list-featured-post'
+          | 'list-image'
+          | 'split-image'
+          | 'grid-categories'
+          | 'list-tags'
+          | 'grid-load-more'
+          | 'grid-pagination'
+          | 'masonry-grid';
+        title: string;
+        subtitle?: string | null;
+        description?: string | null;
+        image?: number | Media | null;
+        loadMore?: string | null;
+        pagination?: {
+          previousText: string;
+          nextText: string;
+        };
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'blog';
+      }
+    | {
+        layoutType:
+          | 'simple-grid'
+          | 'simple-centered'
+          | 'background-color'
+          | 'split-grid'
+          | 'split-background-image'
+          | 'centered-description'
+          | 'grid-overlap'
+          | 'stacked-cta'
+          | 'alternating-background'
+          | 'light-background';
+        title: string;
+        subtitle?: string | null;
+        description?: string | null;
+        backgroundColor?: string | null;
+        backgroundImage?: number | Media | null;
+        cta?: {
+          ctaLabel: string;
+          ctaUrl: string;
+        };
+        logos?:
+          | {
+              logo: number | Media;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'logo-clouds';
+      }
+    | {
+        layoutType:
+          | 'simple-centered'
+          | 'company-info'
+          | 'newsletter-form'
+          | 'split-logo'
+          | 'centered-links'
+          | 'social-media-links'
+          | 'split-newsletter'
+          | 'simple-links'
+          | 'stacked-cta'
+          | 'contact-info';
+        title?: string | null;
+        subtitle?: string | null;
+        description?: string | null;
+        backgroundImage?: number | Media | null;
+        newsletterForm?: {
+          formTitle: string;
+          formFields?:
+            | {
+                fieldName: string;
+                fieldType: 'text' | 'email';
+                id?: string | null;
+              }[]
+            | null;
+        };
+        logo?: number | Media | null;
+        links?:
+          | {
+              linkLabel: string;
+              linkUrl: string;
+              id?: string | null;
+            }[]
+          | null;
+        socialMediaLinks?:
+          | {
+              platform: string;
+              url: string;
+              id?: string | null;
+            }[]
+          | null;
+        cta?: {
+          ctaLabel: string;
+          ctaUrl: string;
+        };
+        contactInfo?: {
+          address: string;
+          phone: string;
+          email: string;
+        };
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'footer';
+      }
   )[];
   slug?: string | null;
   updatedAt: string;

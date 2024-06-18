@@ -9,6 +9,18 @@ import { adminsOrPublished } from './access/adminsOrPublished'
 import { HeroBlock } from './../../blocks/HeroBlock'
 import { FeaturesBlock } from './../../blocks/FeaturesBlock'
 import { CTABlock } from './../../blocks/CTABlock'
+import { TeamBlock } from './../../blocks/TeamBlock'
+import { FAQBlock } from './../../blocks/FAQBlock'
+import { ContactBlock } from './../../blocks/ContactBlock'
+import { StatsBlock } from './../../blocks/StatsBlock'
+import { TestimonialBlock } from './../../blocks/TestimonialBlock'
+import { PricingBlock } from './../../blocks/PricingBlock'
+import { NewsletterBlock } from './../../blocks/NewsletterBlock'
+import { HeaderBlock } from './../../blocks/HeaderBlock'
+import { BlogBlock } from './../../blocks/BlogBlock'
+import { LogoCloudsBlock } from './../../blocks/LogoCloudsBlock'
+import { FooterBlock } from './../../blocks/FooterBlock'
+
 
 export const Pages: CollectionConfig = {
   slug: 'pages',
@@ -64,7 +76,18 @@ export const Pages: CollectionConfig = {
       blocks: [
         HeroBlock,
         FeaturesBlock,
-        CTABlock
+        CTABlock,
+        TeamBlock,
+        FAQBlock,
+        ContactBlock,
+        StatsBlock,
+        TestimonialBlock,
+        PricingBlock,
+        NewsletterBlock,
+        HeaderBlock,
+        BlogBlock,
+        LogoCloudsBlock,
+        FooterBlock
       ],
     },
     slugField(),
