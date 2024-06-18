@@ -127,7 +127,7 @@ export const HeroBlock: Block = {
       label: 'Image Tiles',
       required: true,
       minRows: 2,
-      maxRows: 6,
+      maxRows: 10,
       fields: [
         {
           name: 'image',

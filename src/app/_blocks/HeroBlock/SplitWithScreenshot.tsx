@@ -1,4 +1,5 @@
-import React from 'react'
+'use client'
+import React, { useState, useEffect } from 'react'
 import { Media } from '../../../payload-types'
 import { CMSLink, CMSLinkType } from '../../_components/Link'
 import PayloadImage from '../../_components/Global/Image'
@@ -24,43 +25,78 @@ type Image = {
   id: string
   image: Media | null 
 }
-const images = [
-  {
-    url: "/api/media/file/1.png",
-    alt: "Image 1",
-    group: 1,
-  },
-  {
-    url: "/api/media/file/2.png",
-    alt: "Image 2",
-    group: 2,
-  },
-  {
-    url: "/api/media/file/3.png",
-    alt: "Image 3",
-    group: 2,
-  },
-  {
-    url: "/api/media/file/4.png",
-    alt: "Image 4",
-    group: 3,
-  },
-  {
-    url: "/api/media/file/5.png",
-    alt: "Image 5",
-    group: 3,
-  }
-];
 
+// Function to shuffle an array
+const shuffleArray = (array: any[]) => {
+  return array.sort(() => Math.random() - 0.5);
+};
+
+const getRandomInt = (min: number, max: number, exclude: number) => {
+  let random = Math.floor(Math.random() * (max - min + 1)) + min;
+  while (random === exclude) {
+    random = Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+  return random;
+};
+
+const distributeImages = (images: Image[]) => {
+  const shuffledImages = shuffleArray(images);
+  const columns: Image[][] = [];
+  let remainingImages = [...shuffledImages];
+
+  // Distribute images so that each column (except the last one) gets exactly two images
+  while (remainingImages.length > 2) {
+    columns.push(remainingImages.splice(0, 2));
+  }
+
+  // Put remaining images in the last column
+  if (remainingImages.length > 0) {
+    columns.push(remainingImages);
+  }
+
+  return columns;
+};
 
 export const SplitWithScreenshot: React.FC<SplitWithScreenshotProps> = ({ layoutType, imageTiles, title, description, logo, logoImage, imageUrl, links } ) => {
-  const groupedImages = images.reduce((acc, image) => {
-    if (!acc[image.group]) {
-      acc[image.group] = [];
+  const [columns, setColumns] = useState<Image[][]>([]);
+  const [prevRandomIndex, setPrevRandomIndex] = useState<number>(-1);
+  const [randomIndices, setRandomIndices] = useState<number[]>([]);
+
+  useEffect(() => {
+    // This will run only on the client side
+    setInitialImages();
+  }, []);
+
+  useEffect(() => {
+    if(imageTiles.length === 0) return;
+    const indices = columns.map(() => getRandomInt(0, 2, prevRandomIndex));
+    setRandomIndices(indices);
+    if (indices.length > 0) {
+      setPrevRandomIndex(indices[indices.length - 1]);
     }
-    acc[image.group].push(image);
-    return acc;
-  }, {});
+  }, [columns]);
+
+  const setInitialImages = () => {
+    if(imageTiles.length === 0) return;
+    const newImages = imageTiles.filter((img: Image) => !columns.flat().map(image => image.id).includes(img.id));
+    if (newImages.length === 0) return;
+
+    const updatedColumns = distributeImages(newImages);
+    setColumns(updatedColumns);
+    addImages()
+  };
+
+  const addImages = () => {
+    const newImages = imageTiles.filter((img: Image) => !columns.flat().map(image => image.id).includes(img.id));
+    if (newImages.length === 0) return;
+
+    const currentImages = columns.flat();
+    const allImages = [...currentImages, ...newImages];
+    const updatedColumns = distributeImages(allImages);
+
+    setColumns(updatedColumns);
+  };
+
 
   return (
     <div className="relative isolate overflow-hidden">
@@ -124,41 +160,23 @@ export const SplitWithScreenshot: React.FC<SplitWithScreenshotProps> = ({ layout
         }
         { layoutType == 'image-tiles' &&
             <div className="mt-14 flex justify-end gap-8 sm:-mt-44 sm:justify-start sm:pl-20 lg:mt-0 lg:pl-0">
-              <div className="ml-auto w-44 flex-none space-y-8 pt-32 sm:ml-0 sm:pt-80 lg:order-last lg:pt-36 xl:order-none xl:pt-80">
-                <div className="relative">
-                <PayloadImage image={images[0]} width={20} height={20} className='aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-cover shadow-lg'/>
-                  <div className="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-inset ring-gray-900/10" />
-                </div>
-              </div>
-              <div className="mr-auto w-44 flex-none space-y-8 sm:mr-0 sm:pt-52 lg:pt-36">
-                <div className="relative">
-                <PayloadImage image={images[1]} width={20} height={20} className='aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-cover shadow-lg'/>
-                  <div className="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-inset ring-gray-900/10" />
-                </div>
-                <div className="relative">
-                <PayloadImage image={images[2]} width={20} height={20} className='aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-cover shadow-lg'/>
-                  <div className="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-inset ring-gray-900/10" />
-                </div>
-                
-              </div>
-              <div className="w-44 flex-none space-y-8 pt-32 sm:pt-0">
-                <div className="relative">
-                <PayloadImage image={images[3]} width={20} height={20} className='aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-cover shadow-lg'/>
-                  <div className="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-inset ring-gray-900/10" />
-                </div>
-                <div className="relative">
-                <PayloadImage image={images[4]} width={20} height={20} className='aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-cover shadow-lg'/>
-                  <div className="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-inset ring-gray-900/10" />
-                </div>
-              </div>
-              <div className="ml-auto w-44 flex-none space-y-8 pt-32 sm:ml-0 sm:pt-80 lg:order-last lg:pt-36 xl:order-none xl:pt-80">
-                <div className="relative">
-                <PayloadImage image={images[0]} width={20} height={20} className='aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-cover shadow-lg'/>
-                  <div className="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-inset ring-gray-900/10" />
-                </div>
-              </div>
+              {columns.map((column, colIndex) => {
+                const randomColIndex = randomIndices[colIndex];
+                return (
+                  <div key={colIndex} className={`w-44 flex-none space-y-8 ${randomColIndex === 0 ? 'pt-32 sm:pt-0' : randomColIndex === 1 ? 'sm:pt-52 lg:pt-36' : 'pt-32 sm:pt-80 lg:pt-36 xl:pt-80'}`}>
+                    {column.map((image, imgIndex) => (
+                      <div key={imgIndex} className="relative">
+                        {image && (
+                          <PayloadImage image={image.image} width={2432} height={1442} className='aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-cover shadow-lg' />
+                        )}
+                        <div className="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-inset ring-gray-900/10" />
+                      </div>
+                    ))}
+                  </div>
+                );
+              })}
             </div>
-  }
+        }
         { layoutType == 'phone-mockup' &&
           <div className="mt-16 sm:mt-24 lg:mt-0 lg:flex-shrink-0 lg:flex-grow">
             <svg viewBox="0 0 366 729" role="img" className="mx-auto w-[22.875rem] max-w-full drop-shadow-xl">
