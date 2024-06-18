@@ -7,7 +7,6 @@ import { Page } from '../../../../payload-types'
 import { fetchPage } from '@/app/_api/fetchPage'
 import { fetchPages } from '@/app/_api/fetchPages'
 import { Blocks } from '../../../_components/Blocks'
-// import { Hero } from '../../../_components/Hero'
 // import { generateMeta } from '../../../../_utilities/generateMeta'
 
 interface PageParams {
@@ -43,7 +42,6 @@ export default async function Page({ params: { slug = 'home', locale } }: PagePa
 
   return (
     <React.Fragment>
-      {/* <Hero {...hero} /> */}
       <Blocks
         blocks={layout}
       />
