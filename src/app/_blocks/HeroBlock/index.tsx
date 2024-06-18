@@ -7,7 +7,7 @@ import { SplitWithScreenshot } from './SplitWithScreenshot'
 import { SplitCodeExample } from './SplitCodeExample'
 import { SplitImage } from './SplitImage'
 import { AngledImg } from './AngledImg'
-
+import { HeroOffsetImage } from './HeroOffsetImage'
 import { toKebabCase } from '../../_utilities/toKebabCase'
 
 const layoutComponents = {
@@ -20,7 +20,7 @@ const layoutComponents = {
   'split-image': SplitImage,
   'angled-image-right': AngledImg,
   'image-tiles': SplitWithScreenshot,
-
+  'offset-image': HeroOffsetImage
 }
 
 export const HeroBlock: React.FC<{
