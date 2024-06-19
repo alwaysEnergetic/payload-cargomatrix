@@ -55,7 +55,6 @@ export const SimpleCentered: React.FC<SimpleCenteredProps> = ({ title, descripti
             {announcementText}{' '}
             <a href={announcementUrl} className="font-semibold text-indigo-600">
               <span className="absolute inset-0" aria-hidden="true" />
-              Read more <span aria-hidden="true">&rarr;</span>
             </a>
           </div>
         </div>

@@ -35,7 +35,6 @@ export const SplitImage: React.FC<SplitImageProps> = ({ title, logo, logoImage, 
                         {announcementText}{' '}
                         <a href={announcementUrl} className="whitespace-nowrap font-semibold text-indigo-600">
                         <span className="absolute inset-0" aria-hidden="true" />
-                        Read more <span aria-hidden="true">&rarr;</span>
                         </a>
                     </div>
                     </div>

@@ -37,26 +37,25 @@ export const AngledImg: React.FC<AngledImgProps> = ({ title, logo, logoImage, de
             {/* @ts-expect-error */}
           { logo && <PayloadImage image={logoImage} width={45} height={45} /> }
             <div className="relative px-6 py-32 sm:py-40 lg:px-8 lg:py-56 lg:pr-0">
-            <div className="mx-auto max-w-2xl lg:mx-0 lg:max-w-xl">
-                {announcement && announcementText && announcementUrl && (
-                    <div className="hidden sm:mt-32 sm:flex lg:mt-16">
-                        <div className="relative rounded-full px-3 py-1 text-sm leading-6 text-gray-500 ring-1 ring-gray-900/10 hover:ring-gray-900/20 dark:ring-white dark:hover:ring-white">
-                            {announcementText}{' '}
-                            <a href={announcementUrl} className="whitespace-nowrap font-semibold text-indigo-600">
-                            <span className="absolute inset-0" aria-hidden="true" />
-                            Read more <span aria-hidden="true">&rarr;</span>
-                            </a>
-                        </div>
-                    </div>
-                )}
-                <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl dark:text-slate-200">{title}</h1>
-                <p className="mt-6 text-lg leading-8 text-gray-600">{description}</p>
-                <div className="mt-10 flex items-center gap-x-6">
-                    {links.map((link: LinkType, i: number) => (
-                        <CMSLink key={i} {...link['link']} />
-                    ))}
-                </div>
-            </div>
+              <div className="mx-auto max-w-2xl lg:mx-0 lg:max-w-xl">
+                  {announcement && announcementText && announcementUrl && (
+                      <div className="hidden sm:mt-32 sm:flex lg:mt-16">
+                          <div className="relative rounded-full px-3 py-1 text-sm leading-6 text-gray-500 ring-1 ring-gray-900/10 hover:ring-gray-900/20 dark:ring-white dark:hover:ring-white">
+                              {announcementText}{' '}
+                              <a href={announcementUrl} className="whitespace-nowrap font-semibold text-indigo-600">
+                              <span className="absolute inset-0" aria-hidden="true" />
+                              </a>
+                          </div>
+                      </div>
+                  )}
+                  <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl dark:text-slate-200">{title}</h1>
+                  <p className="mt-6 text-lg leading-8 text-gray-600">{description}</p>
+                  <div className="mt-10 flex items-center gap-x-6">
+                      {links.map((link: LinkType, i: number) => (
+                          <CMSLink key={i} {...link['link']} />
+                      ))}
+                  </div>
+              </div>
           </div>
         </div>
       </div>
