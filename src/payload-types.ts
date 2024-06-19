@@ -249,14 +249,15 @@ export interface Page {
         teamMembers?:
           | {
               name: string;
+              description?: string | null;
               role: string;
               imageUrl: number | Media;
               bio?: string | null;
               location?: string | null;
-              socialMediaUrls?:
+              social?:
                 | {
-                    platform?: string | null;
-                    url?: string | null;
+                    platform: 'twitter' | 'linkedin' | 'facebook' | 'instagram' | 'git';
+                    url: string;
                     id?: string | null;
                   }[]
                 | null;

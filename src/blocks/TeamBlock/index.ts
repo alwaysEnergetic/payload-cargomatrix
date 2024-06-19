@@ -1,4 +1,32 @@
 import { Block } from 'payload/types';
+import { socialPlatform } from '@/constants'
+// Define the helper function
+type Option = {
+  label: string;
+  value: string;
+};
+
+const checkSiblingExistsAndLayoutType = (data: any, siblingData: any, layoutType: string[]) => {
+  if (data && data.layout) {
+    for (let layout of data.layout) {
+      if (layout.teamMembers) {
+        const siblingExists = layout.teamMembers.some((team: any) => team.id === siblingData.id);
+        if (siblingExists) {
+          return layoutType.includes(layout?.layoutType)
+        }
+      }
+    }
+  }
+  return false
+}
+
+const generateOptions = (socialPlatform: Record<string, string>): Option[] => {
+  return Object.keys(socialPlatform).map(key => ({
+    label: key,
+    value: socialPlatform[key]
+  }));
+};
+
 
 export const TeamBlock: Block = {
   slug: 'team',
@@ -51,11 +79,6 @@ export const TeamBlock: Block = {
           label: 'Name',
         },
         {
-          name: 'description',
-          type: 'text',
-          label: 'Description',
-        },
-        {
           name: 'role',
           type: 'text',
           required: true,
@@ -74,42 +97,30 @@ export const TeamBlock: Block = {
           required: false,
           label: 'Bio',
           admin: {
-            // condition: (data, siblingData) => siblingData?.layoutType === 'with-bio',
+            condition: (data, siblingData) => checkSiblingExistsAndLayoutType(data, siblingData, ['with-bio'])
           },
         },
         {
-          name: 'location',
-          type: 'text',
-          required: false,
-          label: 'Location',
-          admin: {
-            condition: (data, siblingData) => siblingData?.layoutType === 'vertical-list',
-          },
-        },
-        {
-          name: 'socialMediaUrls',
+          name: 'social',
           type: 'array',
           label: 'Social Media URLs',
           fields: [
             {
               name: 'platform',
-              type: 'text',
+              type: 'select',
               required: true,
+              options: generateOptions(socialPlatform),
               label: 'Platform',
             },
             {
               name: 'url',
               type: 'text',
-              required: true,
               label: 'URL',
+              required: true,
             },
           ],
           admin: {
-            condition: (data, siblingData) => {
-              console.log('data=>', data)
-              console.log('siblingData=>', siblingData)
-              return siblingData?.layoutType === 'simple-list-social-icons'
-            }
+            condition: (data, siblingData) => checkSiblingExistsAndLayoutType(data, siblingData, ['simple-list-social-icons', 'with-bio', 'vertical-list', 'large-avatars'])
           },
         },
       ],

@@ -635,3 +635,10 @@ export const themes = [
   
   export type Theme = (typeof themes)[number]
   
+  export const socialPlatform = {
+    Twitter: 'twitter',
+    Linkedin: 'linkedin',
+    Facebook: 'facebook',
+    Instagram: 'instagram',
+    Git: 'git'
+  }
