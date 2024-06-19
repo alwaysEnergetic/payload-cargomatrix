@@ -3,7 +3,7 @@ import { Metadata } from 'next'
 import { draftMode } from 'next/headers'
 import { notFound } from 'next/navigation'
 
-import { Page } from '../../../../payload-types'
+import { Page as PageType } from '../../../../payload-types'
 import { fetchPage } from '@/app/_api/fetchPage'
 import { fetchPages } from '@/app/_api/fetchPages'
 import { Blocks } from '../../../_components/Blocks'
@@ -16,7 +16,7 @@ interface PageParams {
 export default async function Page({ params: { slug = 'home', locale } }: PageParams) {
   const { isEnabled: isDraftMode } = draftMode()
 
-  let page: Page | null | undefined = null
+  let page: PageType | null | undefined = null
 
   try {
     page = await fetchPage(slug, locale)

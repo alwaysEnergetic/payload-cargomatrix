@@ -51,6 +51,11 @@ export const TeamBlock: Block = {
           label: 'Name',
         },
         {
+          name: 'description',
+          type: 'text',
+          label: 'Description',
+        },
+        {
           name: 'role',
           type: 'text',
           required: true,
@@ -69,7 +74,7 @@ export const TeamBlock: Block = {
           required: false,
           label: 'Bio',
           admin: {
-            condition: (data, siblingData) => siblingData?.layoutType === 'with-bio',
+            // condition: (data, siblingData) => siblingData?.layoutType === 'with-bio',
           },
         },
         {
@@ -100,7 +105,11 @@ export const TeamBlock: Block = {
             },
           ],
           admin: {
-            condition: (data, siblingData) => siblingData?.layoutType === 'simple-list-social-icons',
+            condition: (data, siblingData) => {
+              console.log('data=>', data)
+              console.log('siblingData=>', siblingData)
+              return siblingData?.layoutType === 'simple-list-social-icons'
+            }
           },
         },
       ],

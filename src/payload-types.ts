@@ -155,7 +155,17 @@ export interface Page {
         title: string;
         subtitle?: string | null;
         description?: string | null;
+        feature_item?:
+          | {
+              icon?: boolean | null;
+              iconImage?: number | Media | null;
+              title?: string | null;
+              caption?: string | null;
+              id?: string | null;
+            }[]
+          | null;
         productScreenshot?: number | Media | null;
+        img_position?: ('left' | 'right') | null;
         largeScreenshot?: number | Media | null;
         codeExampleImage?: number | Media | null;
         icons?:
@@ -245,8 +255,8 @@ export interface Page {
               location?: string | null;
               socialMediaUrls?:
                 | {
-                    platform: string;
-                    url: string;
+                    platform?: string | null;
+                    url?: string | null;
                     id?: string | null;
                   }[]
                 | null;
@@ -624,8 +634,8 @@ export interface Page {
         title?: string | null;
         subtitle?: string | null;
         description?: string | null;
-        backgroundImage?: number | Media | null;
-        newsletterForm?: {
+        bg_image?: number | Media | null;
+        news_form?: {
           formTitle: string;
           formFields?:
             | {
@@ -643,7 +653,7 @@ export interface Page {
               id?: string | null;
             }[]
           | null;
-        socialMediaLinks?:
+        media_links?:
           | {
               platform: string;
               url: string;

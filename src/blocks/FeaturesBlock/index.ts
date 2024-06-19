@@ -48,10 +48,42 @@ export const FeaturesBlock: Block = {
       label: 'Description',
     },
     {
+      name: 'feature_item', // required
+      type: 'array', // required
+      label: 'Feature Items',
+      minRows: 2,
+      maxRows: 10,
+      fields: [
+        {
+          name: 'icon',
+          type: 'checkbox',
+          label: 'Show Icon',
+        },
+        {
+          name: 'iconImage',
+          type: 'upload',
+          relationTo: 'media',
+          required: false,
+          label: 'Logo Image',
+          admin: {
+            condition: (data, siblingData) => siblingData?.icon,
+          },
+        },
+        {
+          name: 'title',
+          type: 'text',
+        },
+        {
+          name: 'caption',
+          type: 'text',
+        },
+      ],
+    },
+    {
       name: 'productScreenshot',
       type: 'upload',
       relationTo: 'media',
-      required: false,
+      required: true,
       label: 'Product Screenshot',
       admin: {
         condition: (data, siblingData) => [
@@ -60,6 +92,28 @@ export const FeaturesBlock: Block = {
           'product-screenshot-dark',
           'product-screenshot-panel',
         ].includes(siblingData?.layoutType),
+      },
+    },
+    {
+      name: 'img_position', // required
+      type: 'radio', // required
+      label: 'Image Position',
+      required: true,
+      options: [
+        // required
+        {
+          label: 'Left',
+          value: 'left',
+        },
+        {
+          label: 'Right',
+          value: 'right',
+        },
+      ],
+      defaultValue: 'left',
+      admin: {
+        layout: 'horizontal',
+        condition: (data, siblingData) => siblingData?.layoutType === 'product-screenshot',
       },
     },
     {

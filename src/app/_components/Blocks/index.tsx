@@ -3,12 +3,14 @@ import React, { Fragment } from 'react'
 import { Page } from './../../../payload-types.js'
 
 import { HeroBlock } from '../../_blocks/HeroBlock'
+import { TeamSection } from '../../_blocks/TeamSection'
+
 
 import { toKebabCase } from '../../_utilities/toKebabCase'
 
-
 const blockComponents = {
   hero: HeroBlock,
+  team: TeamSection
 }
 
 export const Blocks: React.FC<{
@@ -21,7 +23,6 @@ export const Blocks: React.FC<{
       <Fragment>
         {blocks.map((block, index) => {
           const { blockName, blockType } = block
-
           if (blockType && blockType in blockComponents) {
             // @ts-expect-error
             const Block = blockComponents[blockType]
@@ -31,7 +32,7 @@ export const Blocks: React.FC<{
                     key = {index}
                   // @ts-expect-error
                   id = {toKebabCase(blockName)}
-                  block ={ block}
+                  {...block}
                 />
               )
             }
@@ -44,3 +45,4 @@ export const Blocks: React.FC<{
 
   return null
 }
+
