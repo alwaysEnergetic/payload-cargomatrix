@@ -9,31 +9,43 @@ export const FeaturesBlock: Block = {
       required: true,
       options: [
         { label: 'With Product Screenshot', value: 'product-screenshot' },
-        { label: 'Centered 2x2 Grid', value: 'centered-2x2' },
-        { label: 'With Large Screenshot on Dark', value: 'large-screenshot-dark' },
         { label: 'With Large Screenshot', value: 'large-screenshot' },
-        { label: 'Simple Three Column with Small Icons on Dark', value: 'three-column-small-icons-dark' },
-        { label: 'Simple Three Column with Small Icons', value: 'three-column-small-icons' },
-        { label: 'With Product Screenshot on Left', value: 'product-screenshot-left' },
-        { label: 'With Product Screenshot on Dark', value: 'product-screenshot-dark' },
-        { label: 'Simple Three Column with Large Icons on Dark', value: 'three-column-large-icons-dark' },
-        { label: 'Simple Three Column with Large Icons', value: 'three-column-large-icons' },
-        { label: 'Contained in Panel', value: 'contained-panel' },
-        { label: 'With Product Screenshot Panel', value: 'product-screenshot-panel' },
         { label: 'With Testimonial', value: 'testimonial' },
-        { label: 'Offset 2x2 Grid', value: 'offset-2x2' },
-        { label: 'With Code Example Panel', value: 'code-example-panel' },
-        { label: 'Offset with Feature List', value: 'offset-feature-list' },
         { label: 'Simple', value: 'simple' },
-        { label: 'Simple Two-Column with Small Icons on Dark', value: 'two-column-small-icons-dark' },
+        { label: 'Simple Two-Column with Small Icons', value: 'two-column-small-icons' },
       ],
       label: 'Layout Type',
+    },
+    {
+      name: 'showTitle',
+      type: 'checkbox',
+      label: 'Show Title',
+      admin: {
+        condition: (data, siblingData) => siblingData?.layoutType === 'large-screenshot',
+      },
     },
     {
       name: 'title',
       type: 'text',
       required: true,
       label: 'Title',
+      admin: {
+        condition: (data, siblingData) => siblingData?.show_title
+      },
+    },
+    {
+      name: 'titleAlgin',
+      type: 'select',
+      required: true,
+      options: [
+        { label: 'Left', value: 'left' },
+        { label: 'Center', value: 'center' },
+      ],
+      defaultValue:'center',
+      label: 'Title Algin',
+      admin: {
+        condition: (data, siblingData) => siblingData?.layoutType === 'large-screenshot',
+      },
     },
     {
       name: 'subtitle',
@@ -48,7 +60,7 @@ export const FeaturesBlock: Block = {
       label: 'Description',
     },
     {
-      name: 'feature_item', // required
+      name: 'featureItems', // required
       type: 'array', // required
       label: 'Feature Items',
       minRows: 2,
@@ -64,7 +76,7 @@ export const FeaturesBlock: Block = {
           type: 'upload',
           relationTo: 'media',
           required: false,
-          label: 'Logo Image',
+          label: 'Icon',
           admin: {
             condition: (data, siblingData) => siblingData?.icon,
           },
@@ -80,6 +92,14 @@ export const FeaturesBlock: Block = {
       ],
     },
     {
+      name: 'showImagePanel',
+      type: 'checkbox',
+      label: 'Show Screenshot Panel',
+      admin: {
+        condition: (data, siblingData) => siblingData?.layoutType === 'product-screenshot',
+      },
+    },
+    {
       name: 'productScreenshot',
       type: 'upload',
       relationTo: 'media',
@@ -88,14 +108,11 @@ export const FeaturesBlock: Block = {
       admin: {
         condition: (data, siblingData) => [
           'product-screenshot',
-          'product-screenshot-left',
-          'product-screenshot-dark',
-          'product-screenshot-panel',
         ].includes(siblingData?.layoutType),
       },
     },
     {
-      name: 'img_position', // required
+      name: 'imgPos', // required
       type: 'radio', // required
       label: 'Image Position',
       required: true,
@@ -117,16 +134,21 @@ export const FeaturesBlock: Block = {
       },
     },
     {
+      name: 'showLargeImage',
+      type: 'checkbox',
+      label: 'Show Large Screenshot',
+      admin: {
+        condition: (data, siblingData) => siblingData?.layoutType === 'large-screenshot',
+      },
+    },
+    {
       name: 'largeScreenshot',
       type: 'upload',
       relationTo: 'media',
       required: false,
       label: 'Large Screenshot',
       admin: {
-        condition: (data, siblingData) => [
-          'large-screenshot-dark',
-          'large-screenshot',
-        ].includes(siblingData?.layoutType),
+        condition: (data, siblingData) => siblingData?.layoutType === 'large-screenshot' && siblingData?.showLargeImage
       },
     },
     {
@@ -166,11 +188,6 @@ export const FeaturesBlock: Block = {
       ],
       admin: {
         condition: (data, siblingData) => [
-          'three-column-small-icons-dark',
-          'three-column-small-icons',
-          'three-column-large-icons-dark',
-          'three-column-large-icons',
-          'two-column-small-icons-dark',
           'offset-feature-list',
         ].includes(siblingData?.layoutType),
       },

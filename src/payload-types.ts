@@ -165,7 +165,7 @@ export interface Page {
             }[]
           | null;
         productScreenshot?: number | Media | null;
-        img_position?: ('left' | 'right') | null;
+        imgPos?: ('left' | 'right') | null;
         largeScreenshot?: number | Media | null;
         codeExampleImage?: number | Media | null;
         icons?:

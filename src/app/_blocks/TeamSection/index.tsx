@@ -301,7 +301,7 @@ export const TeamSection: React.FC<TeamSectionProps> = (props) => {
         </div>
       </div>
     ),
-  };
+  }
 
   return layoutComponents[layoutType] || <div>Unknown layout type: {layoutType}</div>
 }

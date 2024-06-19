@@ -4,13 +4,16 @@ import { Page } from './../../../payload-types.js'
 
 import { HeroBlock } from '../../_blocks/HeroBlock'
 import { TeamSection } from '../../_blocks/TeamSection'
+import { FeatureSection } from '../../_blocks/FeatureSection'
+
 
 
 import { toKebabCase } from '../../_utilities/toKebabCase'
 
 const blockComponents = {
   hero: HeroBlock,
-  team: TeamSection
+  team: TeamSection,
+  featureSection: FeatureSection
 }
 
 export const Blocks: React.FC<{
